@@ -1,0 +1,74 @@
+<script setup lang="ts">
+import { type CSSProperties, computed, useSlots } from 'vue'
+
+interface Props {
+  /**
+   * 横屏
+   */
+  fullWidth: boolean
+  /*
+   * 宽度
+   */
+  width: number
+  /*
+   * 高度
+   */
+  height: number
+  /*
+   * 侧边菜单宽度
+   */
+  sidebarWidth: number
+  /*
+   * 是否移动端
+   */
+  isMobile: boolean
+  /*
+   * 是否显示
+   */
+  show: boolean
+  /*
+   * zIndex
+   */
+  zIndex: number
+  /*
+   * 主题
+   */
+  theme?: string
+}
+
+const props = withDefaults(defineProps<Props>(), {})
+
+const slots = useSlots()
+
+const style = computed((): CSSProperties => {
+  const { fullWidth, height, show } = props
+  const right = !show || !fullWidth ? undefined : 0
+  return {
+    height: `${height}px`,
+    marginTop: show ? 0 : `-${height}px`,
+    right,
+  }
+})
+
+const logoStyle = computed(() => {
+  return {
+    minWidth: `${props.isMobile ? 40 : props.sidebarWidth}px`,
+  }
+})
+</script>
+
+<template>
+  <header
+    :class="theme"
+    :style="style"
+    class="bg-header transition-[margin-top] top-0 w-full flex flex-[0_0_auto] items-center border-accent border-solid duration-200"
+  >
+    <div v-if="slots.logo" :style="logoStyle">
+      <slot name="logo"></slot>
+    </div>
+
+    <slot name="toggle-button"></slot>
+
+    <slot></slot>
+  </header>
+</template>

@@ -1,0 +1,27 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "tasks": {
+    "build": {
+      "dependsOn": ["^build"],
+      "inputs": ["$TURBO_DEFAULT$", ".env*"],
+      "outputs": ["dist/**"]
+    },
+    "stub": {
+      "dependsOn": [],
+      "outputs": ["dist/**"]
+    },
+    "check-types": {
+      "dependsOn": []
+    },
+    "dev": {
+      "dependsOn": [],
+      "cache": false,
+      "persistent": true
+    },
+    "dev:setup": {
+      "dependsOn": [],
+      "outputs": ["dist/**"]
+    }
+  },
+  "cacheDir": ".turbo/cache"
+}

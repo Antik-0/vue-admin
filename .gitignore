@@ -1,0 +1,12 @@
+node_modules
+dist
+dist-ssr
+
+.turbo
+.cache
+.temp
+.eslintcache
+
+*.log
+*.local
+*.tsbuildinfo

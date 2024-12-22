@@ -1,0 +1,38 @@
+{
+  "name": "@repo/ui",
+  "version": "1.0.0",
+  "private": true,
+  "license": "MIT",
+  "type": "module",
+  "imports": {
+    "#/*": "./src/*"
+  },
+  "exports": {
+    ".": {
+      "types": "./src/index.ts",
+      "default": "./src/index.ts"
+    },
+    "./sidebar": {
+      "types": "./src/components/sidebar/index.ts",
+      "default": "./src/components/sidebar/index.ts"
+    },
+    "./menu": {
+      "types": "./src/components/menu/index.ts",
+      "default": "./src/components/menu/index.ts"
+    }
+  },
+  "scripts": {
+    "check-types": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@config/tsconfig": "workspace:*",
+    "@core/types": "workspace:*",
+    "@repo/utils": "workspace:*",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "radix-vue": "^1.9.11",
+    "tailwind-merge": "^2.5.5",
+    "vue": "catalog:",
+    "vue-router": "catalog:"
+  }
+}

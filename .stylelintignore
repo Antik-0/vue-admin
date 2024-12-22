@@ -1,0 +1,17 @@
+node_modules
+dist
+public
+
+.turbo
+.local
+.npmrc
+.gitignore
+
+*.yaml
+*.svg
+*.js
+*.jsx
+*.ts
+*.tsx
+*.md
+*.json

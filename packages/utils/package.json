@@ -1,0 +1,21 @@
+{
+  "name": "@repo/utils",
+  "version": "1.0.0",
+  "private": true,
+  "license": "MIT",
+  "type": "module",
+  "exports": {
+    ".": {
+      "default": "./src/index.ts"
+    }
+  },
+  "scripts": {
+    "check-types": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@config/tsconfig": "workspace:*",
+    "@core/types": "workspace:*",
+    "vue": "catalog:",
+    "vue-router": "catalog:"
+  }
+}

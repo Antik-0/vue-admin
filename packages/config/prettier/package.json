@@ -1,0 +1,24 @@
+{
+  "name": "@config/prettier",
+  "version": "1.0.0",
+  "private": true,
+  "license": "MIT",
+  "type": "module",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.mjs"
+    }
+  },
+  "scripts": {
+    "check-types": "tsc --noEmit",
+    "stub": "pnpm unbuild --stub"
+  },
+  "devDependencies": {
+    "@config/tsconfig": "workspace:*",
+    "prettier": "catalog:"
+  }
+}

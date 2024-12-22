@@ -1,0 +1,24 @@
+{
+  "name": "@core/types",
+  "version": "1.0.0",
+  "private": true,
+  "license": "MIT",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./src/index.ts",
+      "default": "./src/index.ts"
+    },
+    "./global": {
+      "types": "./src/global.d.ts"
+    }
+  },
+  "scripts": {
+    "check-types": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@config/tsconfig": "workspace:*",
+    "vue": "catalog:",
+    "vue-router": "catalog:"
+  }
+}
