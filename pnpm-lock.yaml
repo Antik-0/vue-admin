@@ -250,11 +250,7 @@ importers:
         specifier: ^5.0.2
         version: 5.0.2(prettier@3.4.2)(stylelint@16.12.0(typescript@5.7.2))
 
-  packages/config/tsconfig:
-    devDependencies:
-      '@types/node':
-        specifier: ^22.7.4
-        version: 22.10.2
+  packages/config/tsconfig: {}
 
   packages/config/unocss:
     devDependencies:
