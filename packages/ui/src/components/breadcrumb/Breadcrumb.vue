@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import type { BreadcrumbProps } from './breadcrumb'
 import {
   Breadcrumb,
   BreadcrumbEllipsis,
@@ -9,7 +10,13 @@ import {
   BreadcrumbSeparator,
 } from '#/shadcn-ui/breadcrumb'
 
+interface Props extends BreadcrumbProps {}
+
 defineOptions({ name: 'AzBreadcrumb' })
+
+const props = withDefaults(defineProps<Props>(), {
+  showIcon: false,
+})
 </script>
 
 <template>
