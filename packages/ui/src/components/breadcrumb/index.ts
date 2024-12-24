@@ -1,1 +1,1 @@
-export { default as AzBreadcrumb } from './Breadcrumb.vue'
+export { default as UIBreadcrumb } from './Breadcrumb.vue'

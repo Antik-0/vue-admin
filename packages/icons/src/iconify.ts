@@ -3,6 +3,7 @@ export { default as LucideArrowLeftToLine } from './components/LucideArrowLeftTo
 export { default as LucideArrowRightToLine } from './components/LucideArrowRightToLine.vue'
 export { default as LucideBell } from './components/LucideBell.vue'
 export { default as LucideCheck } from './components/LucideCheck.vue'
+export { default as LucideChevronDown } from './components/LucideChevronDown.vue'
 export { default as LucideChevronRight } from './components/LucideChevronRight.vue'
 export { default as LucideChevronsLeft } from './components/LucideChevronsLeft.vue'
 export { default as LucideChevronsRight } from './components/LucideChevronsRight.vue'
