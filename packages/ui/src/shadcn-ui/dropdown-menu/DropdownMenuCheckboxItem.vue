@@ -7,7 +7,7 @@ import {
   useForwardPropsEmits,
 } from 'radix-vue'
 import { type HTMLAttributes, computed } from 'vue'
-import { Check } from '#/icons'
+import { LucideCheck } from '#/icons'
 import { cn } from '#/utils'
 
 const props = defineProps<
@@ -36,7 +36,7 @@ const forwarded = useForwardPropsEmits(delegatedProps, emits)
   >
     <span class="absolute left-2 h-3.5 w-3.5 flex items-center justify-center">
       <DropdownMenuItemIndicator>
-        <Check class="h-4 w-4" />
+        <LucideCheck class="h-4 w-4" />
       </DropdownMenuItemIndicator>
     </span>
     <slot></slot>

@@ -330,6 +330,9 @@ importers:
       '@core/types':
         specifier: workspace:*
         version: link:../core/types
+      '@repo/icons':
+        specifier: workspace:*
+        version: link:../icons
       '@repo/utils':
         specifier: workspace:*
         version: link:../utils

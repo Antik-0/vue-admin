@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import type { HTMLAttributes } from 'vue'
-import { ChevronRight } from '#/icons'
+import { LucideChevronRight } from '#/icons'
 import { cn } from '#/utils'
 
 const props = defineProps<{
@@ -15,7 +15,7 @@ const props = defineProps<{
     role="presentation"
   >
     <slot>
-      <ChevronRight />
+      <LucideChevronRight />
     </slot>
   </li>
 </template>

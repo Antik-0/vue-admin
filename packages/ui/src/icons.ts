@@ -1,5 +1,7 @@
-export { default as Check } from './icons/Check.vue'
-export { default as ChevronRight } from './icons/ChevronRight.vue'
-export { default as Circle } from './icons/Circle.vue'
-export { default as LoaderCircle } from './icons/LoaderCircle.vue'
-export { default as MoreHorizontal } from './icons/MoreHorizontal.vue'
+export {
+  LucideCheck,
+  LucideChevronRight,
+  LucideCircle,
+  LucideLoaderCircle,
+  LucideMoreHorizontal,
+} from '@repo/icons'

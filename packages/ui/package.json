@@ -27,6 +27,7 @@
   "devDependencies": {
     "@config/tsconfig": "workspace:*",
     "@core/types": "workspace:*",
+    "@repo/icons": "workspace:*",
     "@repo/utils": "workspace:*",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
