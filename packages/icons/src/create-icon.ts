@@ -5,7 +5,7 @@ import { h, toValue } from 'vue'
 
 type FuncIconProps = Omit<IconProps, 'icon'>
 
-type IconifyIcon = FunctionalComponent<FuncIconProps>
+export type IconifyIcon = FunctionalComponent<FuncIconProps>
 
 export function createIcon(name: MaybeRefOrGetter<string>) {
   const iconName = toValue(name)
