@@ -125,6 +125,9 @@ importers:
       '@repo/ui':
         specifier: workspace:*
         version: link:../packages/ui
+      '@repo/utils':
+        specifier: workspace:*
+        version: link:../packages/utils
       element-plus:
         specifier: ^2.8.6
         version: 2.9.1(vue@3.5.13(typescript@5.7.2))
