@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import type { BaseLayoutProps } from './base-layout'
 import { computed, ref } from 'vue'
-import { LayoutFooter } from './footer'
-import { LayoutHeader } from './header'
 import { useLayout } from './hooks/use-layout'
-import { LayoutMain } from './main'
+
+import LayoutContent from './LayoutContent.vue'
+import LayoutHeader from './LayoutHeader.vue'
 
 import { UIBreadcrumb } from '#/components/breadcrumb'
 
@@ -91,8 +91,7 @@ const breadcrumbs = ref([
           <UIBreadcrumb :breadcrumbs="breadcrumbs" show-icon />
         </slot>
       </LayoutHeader>
-      <LayoutMain />
-      <LayoutFooter />
+      <LayoutContent />
     </div>
   </div>
 </template>
