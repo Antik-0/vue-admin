@@ -1,13 +1,14 @@
 <script setup lang="ts">
 import type { Component } from 'vue'
-import type { ButtonProps } from './index'
-import AzButton from './Button.vue'
+import type { ButtonProps } from './props'
+
+import UIButton from './Button.vue'
 
 interface Props extends Omit<ButtonProps, 'loading' | 'size'> {
   icon?: Component
 }
 
-defineOptions({ name: 'AzIconButton' })
+defineOptions({ name: 'UIIconButton' })
 
 const props = withDefaults(defineProps<Props>(), {
   class: '',
@@ -18,7 +19,7 @@ const props = withDefaults(defineProps<Props>(), {
 </script>
 
 <template>
-  <AzButton v-bind="props" size="icon">
+  <UIButton v-bind="props" size="icon">
     <slot><component :is="props.icon" v-if="props.icon" /></slot>
-  </AzButton>
+  </UIButton>
 </template>

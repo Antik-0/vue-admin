@@ -1,12 +1,13 @@
 <script setup lang="ts">
-import type { ButtonProps } from './index'
+import type { ButtonProps } from './props'
+
 import { computed } from 'vue'
-import { LoaderCircle } from '#/icons'
-import { Button as SdButton } from '#/shadcn-ui'
+import { LucideLoaderCircle } from '#/icons'
+import { Button } from '#/shadcn-ui'
 
 interface Props extends ButtonProps {}
 
-defineOptions({ name: 'AzButton' })
+defineOptions({ name: 'UIButton' })
 
 const props = withDefaults(defineProps<Props>(), {
   class: '',
@@ -22,7 +23,7 @@ const isDisabled = computed(() => {
 </script>
 
 <template>
-  <SdButton
+  <Button
     :class="props.class"
     :disabled="isDisabled"
     :size="props.size"
@@ -30,10 +31,10 @@ const isDisabled = computed(() => {
     as="button"
     type="button"
   >
-    <LoaderCircle
+    <LucideLoaderCircle
       v-if="loading"
       class="text-md mr-2 size-4 flex-shrink-0 animate-spin"
     />
     <slot></slot>
-  </SdButton>
+  </Button>
 </template>

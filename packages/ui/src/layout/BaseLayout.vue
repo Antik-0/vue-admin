@@ -1,10 +1,12 @@
 <script setup lang="ts">
 import type { BaseLayoutProps } from './base-layout'
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 import { LayoutFooter } from './footer'
 import { LayoutHeader } from './header'
 import { useLayout } from './hooks/use-layout'
 import { LayoutMain } from './main'
+
+import { UIBreadcrumb } from '#/components/breadcrumb'
 
 interface Props extends BaseLayoutProps {}
 
@@ -54,6 +56,19 @@ const mainStyle = computed(() => {
     width,
   }
 })
+
+const breadcrumbs = ref([
+  { path: '2', icon: 'logos:react', title: '面包屑:react' },
+  {
+    path: '1',
+    icon: 'logos:vue',
+    items: [
+      { path: '1', icon: 'logos:vue', title: '面包屑:vue' },
+      { path: '2', icon: 'logos:react', title: '面包屑:react' },
+    ],
+    title: '面包屑:vue',
+  },
+])
 </script>
 
 <template>
@@ -71,7 +86,11 @@ const mainStyle = computed(() => {
         :theme="headerTheme"
         :width="mainStyle.width"
         :z-index="zIndex"
-      />
+      >
+        <slot name="breadcrumb">
+          <UIBreadcrumb :breadcrumbs="breadcrumbs" show-icon />
+        </slot>
+      </LayoutHeader>
       <LayoutMain />
       <LayoutFooter />
     </div>
