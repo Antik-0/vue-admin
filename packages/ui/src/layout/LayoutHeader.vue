@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { type CSSProperties, computed, useSlots } from 'vue'
+import { FullScreen } from './widget'
 
 interface Props {
   /**
@@ -69,6 +70,8 @@ const logoStyle = computed(() => {
 
     <slot name="toggle-button"></slot>
 
-    <slot></slot>
+    <slot> </slot>
+
+    <FullScreen />
   </header>
 </template>
