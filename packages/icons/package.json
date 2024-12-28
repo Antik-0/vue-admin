@@ -9,7 +9,7 @@
       "default": "./src/index.ts"
     },
     "./dist/*": "./dist/*",
-    "./svg/*": "./src/svgs/*"
+    "./svgs/*": "./src/svgs/*"
   },
   "scripts": {
     "check-types": "tsc --noEmit",
