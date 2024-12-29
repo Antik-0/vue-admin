@@ -5,7 +5,7 @@ import {
   useForwardProps,
 } from 'radix-vue'
 import { type HTMLAttributes, computed } from 'vue'
-import { LucideChevronRight } from '#/icons'
+import { IconChevronRight } from '#/icons'
 import { cn } from '#/utils'
 
 const props = defineProps<
@@ -32,6 +32,6 @@ const forwardedProps = useForwardProps(delegatedProps)
     "
   >
     <slot></slot>
-    <LucideChevronRight class="ml-auto h-4 w-4" />
+    <IconChevronRight class="ml-auto h-4 w-4" />
   </DropdownMenuSubTrigger>
 </template>

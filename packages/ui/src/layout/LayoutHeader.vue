@@ -1,6 +1,14 @@
 <script setup lang="ts">
 import { type CSSProperties, computed, useSlots } from 'vue'
-import { FullScreen } from './widget'
+import {
+  FullScreen,
+  LanguageToggle,
+  Notification,
+  Perferences,
+  Refresh,
+  SidebarToggle,
+  ThemeToggle,
+} from './widget'
 
 interface Props {
   /**
@@ -68,10 +76,24 @@ const logoStyle = computed(() => {
       <slot name="logo"></slot>
     </div>
 
-    <slot name="toggle-button"></slot>
+    <slot name="toggle-button">
+      <SidebarToggle />
+    </slot>
 
-    <slot> </slot>
+    <slot name="refresh">
+      <Refresh />
+    </slot>
 
-    <FullScreen />
+    <slot name="breadcrumb"> </slot>
+
+    <div class="flex-1"></div>
+
+    <div class="flex">
+      <FullScreen />
+      <Perferences />
+      <ThemeToggle />
+      <LanguageToggle />
+      <Notification />
+    </div>
   </header>
 </template>

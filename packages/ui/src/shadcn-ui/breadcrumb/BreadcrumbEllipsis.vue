@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import type { HTMLAttributes } from 'vue'
-import { LucideMoreHorizontal } from '#/icons'
+import { IconMoreHorizontal } from '#/icons'
 import { cn } from '#/utils'
 
 const props = defineProps<{
@@ -15,7 +15,7 @@ const props = defineProps<{
     role="presentation"
   >
     <slot>
-      <LucideMoreHorizontal class="h-4 w-4" />
+      <IconMoreHorizontal class="h-4 w-4" />
     </slot>
     <span class="sr-only">More</span>
   </span>

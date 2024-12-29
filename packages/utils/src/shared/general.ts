@@ -51,3 +51,8 @@ export const toNumber = (val: any): any => {
 // compare whether a value has changed, accounting for NaN
 export const hasChange = (value: any, oldValue: any): boolean =>
   !Object.is(value, oldValue)
+
+import type { Component } from 'vue'
+
+export const isComponent = (value: unknown): value is Component =>
+  !isString(value) && (isObject(value) || isFunction(value))

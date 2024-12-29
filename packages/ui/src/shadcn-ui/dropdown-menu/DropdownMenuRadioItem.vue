@@ -7,7 +7,7 @@ import {
   useForwardPropsEmits,
 } from 'radix-vue'
 import { type HTMLAttributes, computed } from 'vue'
-import { LucideCircle } from '#/icons'
+import { IconCircle } from '#/icons'
 import { cn } from '#/utils'
 
 const props = defineProps<
@@ -37,7 +37,7 @@ const forwarded = useForwardPropsEmits(delegatedProps, emits)
   >
     <span class="absolute left-2 h-3.5 w-3.5 flex items-center justify-center">
       <DropdownMenuItemIndicator>
-        <LucideCircle class="h-2 w-2 fill-current" />
+        <IconCircle class="h-2 w-2 fill-current" />
       </DropdownMenuItemIndicator>
     </span>
     <slot></slot>

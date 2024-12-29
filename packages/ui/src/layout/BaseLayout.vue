@@ -87,9 +87,11 @@ const breadcrumbs = ref([
         :width="mainStyle.width"
         :z-index="zIndex"
       >
-        <slot name="breadcrumb">
-          <UIBreadcrumb :breadcrumbs="breadcrumbs" show-icon />
-        </slot>
+        <template #breadcrumb>
+          <slot name="breadcrumb">
+            <UIBreadcrumb :breadcrumbs="breadcrumbs" show-icon />
+          </slot>
+        </template>
       </LayoutHeader>
       <LayoutContent />
     </div>

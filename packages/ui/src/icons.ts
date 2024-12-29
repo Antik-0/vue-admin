@@ -1,8 +1,8 @@
 export {
-  LucideCheck,
-  LucideChevronDown,
-  LucideChevronRight,
-  LucideCircle,
-  LucideLoaderCircle,
-  LucideMoreHorizontal,
+  IconCheck,
+  IconChevronDown,
+  IconChevronRight,
+  IconCircle,
+  IconLoaderCircle,
+  IconMoreHorizontal,
 } from '@repo/icons'
