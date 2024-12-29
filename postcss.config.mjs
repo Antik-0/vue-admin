@@ -1,7 +1,7 @@
+import UnoCSS from '@unocss/postcss'
+import Autoprefixer from 'autoprefixer'
+import PostcssNesting from 'postcss-nesting'
+
 export default {
-  plugins: {
-    ...(process.env.NODE_ENV === 'production' ? { cssnano: {} } : {}),
-    autoprefixer: {},
-    'postcss-nesting': {},
-  },
+  plugins: [Autoprefixer(), PostcssNesting(), UnoCSS()],
 }
