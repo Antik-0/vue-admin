@@ -89,7 +89,9 @@ const breadcrumbs = ref([
       >
         <template #breadcrumb>
           <slot name="breadcrumb">
-            <UIBreadcrumb :breadcrumbs="breadcrumbs" show-icon />
+            <div class="px-4">
+              <UIBreadcrumb :breadcrumbs="breadcrumbs" show-icon />
+            </div>
           </slot>
         </template>
       </LayoutHeader>
