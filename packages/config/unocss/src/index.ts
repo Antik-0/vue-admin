@@ -5,7 +5,7 @@ import {
   presetUno,
   transformerVariantGroup,
 } from 'unocss'
-import { flex } from './rules/index.js'
+import { rules } from './rules/index.js'
 import {
   animation,
   borderRadius,
@@ -43,7 +43,7 @@ export const presetBase = definePreset<presetBaseOption, presetBaseTheme>(
         }),
       ],
 
-      rules: [...flex],
+      rules: [...rules],
       theme: {
         animation: {
           ...animation,
