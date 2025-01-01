@@ -5,6 +5,7 @@ import { useLayout } from './hooks/use-layout'
 
 import LayoutContent from './LayoutContent.vue'
 import LayoutHeader from './LayoutHeader.vue'
+import LayoutTabsbar from './LayoutTabsbar.vue'
 
 import { UIBreadcrumb } from '#/components/breadcrumb'
 
@@ -95,6 +96,7 @@ const breadcrumbs = ref([
           </slot>
         </template>
       </LayoutHeader>
+      <LayoutTabsbar :height="38" />
       <LayoutContent />
     </div>
   </div>
