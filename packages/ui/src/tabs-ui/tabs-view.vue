@@ -7,9 +7,7 @@ defineOptions({
 </script>
 
 <template>
-  <div class="flex flex-1 overflow-hidden h-full">
-    <div class="pt-3px flex-1 overflow-hidden size-full">
-      <TabsChrome />
-    </div>
+  <div class="flex flex-1 px-5 h-full overflow-hidden">
+    <TabsChrome />
   </div>
 </template>
