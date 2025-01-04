@@ -1,0 +1,27 @@
+{
+  "name": "@config/postcss",
+  "version": "1.0.0",
+  "private": true,
+  "license": "MIT",
+  "type": "module",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.mjs"
+    }
+  },
+  "scripts": {
+    "check-types": "tsc --noEmit",
+    "stub": "pnpm unbuild --stub"
+  },
+  "devDependencies": {
+    "@config/tsconfig": "workspace:*",
+    "@unocss/postcss": "^0.65.3",
+    "autoprefixer": "^10.4.20",
+    "postcss": "catalog:",
+    "postcss-nesting": "^13.0.1"
+  }
+}

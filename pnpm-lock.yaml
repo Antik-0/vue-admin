@@ -9,9 +9,6 @@ catalogs:
     '@vitejs/plugin-vue':
       specifier: ^5.2.1
       version: 5.2.1
-    autoprefixer:
-      specifier: ^10.4.20
-      version: 10.4.20
     axios:
       specifier: ^1.7.9
       version: 1.7.9
@@ -33,9 +30,9 @@ catalogs:
     pinia:
       specifier: ^2.3.0
       version: 2.3.0
-    postcss-nesting:
-      specifier: ^13.0.1
-      version: 13.0.1
+    postcss:
+      specifier: ^8.4.49
+      version: 8.4.49
     prettier:
       specifier: ^3.3.3
       version: 3.4.2
@@ -86,6 +83,9 @@ importers:
       '@config/eslint':
         specifier: workspace:*
         version: link:packages/config/eslint
+      '@config/postcss':
+        specifier: workspace:*
+        version: link:packages/config/postcss
       '@config/prettier':
         specifier: workspace:*
         version: link:packages/config/prettier
@@ -98,12 +98,6 @@ importers:
       '@types/node':
         specifier: ^22.7.4
         version: 22.10.2
-      '@unocss/postcss':
-        specifier: ^0.65.3
-        version: 0.65.3(postcss@8.4.49)
-      autoprefixer:
-        specifier: 'catalog:'
-        version: 10.4.20(postcss@8.4.49)
       eslint:
         specifier: 'catalog:'
         version: 9.17.0(jiti@2.4.2)
@@ -113,9 +107,6 @@ importers:
       picocolors:
         specifier: 'catalog:'
         version: 1.1.1
-      postcss-nesting:
-        specifier: 'catalog:'
-        version: 13.0.1(postcss@8.4.49)
       prettier:
         specifier: 'catalog:'
         version: 3.4.2
@@ -246,6 +237,24 @@ importers:
       vue-eslint-parser:
         specifier: ^9.4.3
         version: 9.4.3(eslint@9.17.0(jiti@2.4.2))
+
+  packages/config/postcss:
+    devDependencies:
+      '@config/tsconfig':
+        specifier: workspace:*
+        version: link:../tsconfig
+      '@unocss/postcss':
+        specifier: ^0.65.3
+        version: 0.65.3(postcss@8.4.49)
+      autoprefixer:
+        specifier: ^10.4.20
+        version: 10.4.20(postcss@8.4.49)
+      postcss:
+        specifier: 'catalog:'
+        version: 8.4.49
+      postcss-nesting:
+        specifier: ^13.0.1
+        version: 13.0.1(postcss@8.4.49)
 
   packages/config/prettier:
     devDependencies:
