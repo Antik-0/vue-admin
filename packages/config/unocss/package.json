@@ -15,6 +15,7 @@
   },
   "devDependencies": {
     "@config/tsconfig": "workspace:*",
-    "unocss": "catalog:"
+    "unocss": "catalog:",
+    "vue": "catalog:"
   }
 }
