@@ -5,20 +5,31 @@ packages:
   - 'app'
 
 catalog:
-  axios: ^1.7.7
+  # repo
   eslint: ^9.13.0
   prettier: ^3.3.3
   stylelint: ^16.9.0
-  typescript: ^5.6.2
   unbuild: ^2.0.0
   postcss-nesting: ^13.0.1
   autoprefixer: ^10.4.20
   cssnano: ^7.0.6
   esno: ^4.8.0
   turbo: ^2.2.1
-  vue: ^3.5.12
-  vue-router: ^4.4.5
-  unocss: ^0.65.2
   simple-git-hooks: ^2.11.1
   picocolors: ^1.1.1
   lint-staged: ^15.2.10
+
+  # app
+  vue: ^3.5.13
+  vue-router: ^4.5.0
+  pinia: ^2.3.0
+  element-plus: "^2.9.2"
+  typescript: ^5.7.2
+  axios: ^1.7.9
+  unocss: ^0.65.3
+  vite: "^6.0.7"
+  vue-tsc: "^2.2.0"
+  vite-plugin-vue-devtools: "^7.6.8"
+  unplugin-auto-import: "^0.19.0"
+  unplugin-vue-components: "^0.28.0"
+  "@vitejs/plugin-vue": "^5.2.1"
