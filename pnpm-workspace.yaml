@@ -6,16 +6,16 @@ packages:
 
 catalog:
   # repo
-  eslint: ^9.13.0
+  turbo: ^2.2.1
+  unbuild: ^2.0.0
+  eslint: ^9.17.0
   prettier: ^3.3.3
   stylelint: ^16.9.0
-  unbuild: ^2.0.0
   postcss: ^8.4.49
   esno: ^4.8.0
-  turbo: ^2.2.1
   simple-git-hooks: ^2.11.1
-  picocolors: ^1.1.1
   lint-staged: ^15.2.10
+  picocolors: ^1.1.1
 
   # app
   vue: ^3.5.13

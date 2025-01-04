@@ -1,4 +1,3 @@
-export * from './command.js'
 export * from './ignores.js'
 export * from './javascript.js'
 export * from './jsonc.js'
