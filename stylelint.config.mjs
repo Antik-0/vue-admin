@@ -1,5 +1,3 @@
-/** @type {import('stylelint').Config} */
-export default {
-  extends: '@config/stylelint',
-  root: true,
-}
+import { defineConfig } from '@config/stylelint'
+
+export default defineConfig()

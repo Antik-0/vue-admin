@@ -11,9 +11,9 @@
     "dev:setup": "turbo run dev:setup",
     "git-hooks": "simple-git-hooks",
     "lint": "eslint --cache",
+    "lint:css": "stylelint \"**/*.{css,vue}\" --cache --cache-location=node_modules/.temp/.stylelintcache",
     "lint:debug": "pnpm dlx @eslint/config-inspector@latest",
     "lint:fix": "eslint --fix",
-    "lint:style": "stylelint \"**/*.{css,vue}\"",
     "preinstall": "pnpm dlx only-allow pnpm",
     "stub": "turbo run stub"
   },

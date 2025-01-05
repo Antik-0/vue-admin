@@ -6,6 +6,7 @@ dist-ssr
 .cache
 .temp
 .eslintcache
+.stylelintcache
 
 *.log
 *.local
