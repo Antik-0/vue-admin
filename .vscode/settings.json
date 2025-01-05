@@ -3,5 +3,28 @@
     {
       "mode": "auto"
     }
+  ],
+  "eslint.useFlatConfig": true,
+  "eslint.run": "onSave",
+  "eslint.validate": [
+    "javascript",
+    "typescript",
+    "vue",
+    "json",
+    "jsonc",
+    "json5"
+  ],
+  "eslint.trace.server": "off",
+  "prettier.semi": false,
+  "prettier.singleQuote": true,
+  "prettier.arrowParens": "avoid",
+  "prettier.useEditorConfig": false,
+  "stylelint.packageManager": "pnpm",
+  "stylelint.validate": ["css", "vue"],
+  "stylelint.snippet": ["css", "vue"],
+  "stylelint.configFile": "stylelint.config.mjs",
+  "stylelint.configBasedir": "packages/config/stylelint/node_modules",
+  "iconify.customCollectionJsonPaths": [
+    "C:\\Users\\Antik\\Desktop\\v-admin\\packages\\icons\\dist\\icons.json"
   ]
 }
