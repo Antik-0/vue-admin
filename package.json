@@ -4,6 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "boot": "pnpm install && pnpm stub && pnpm dev:setup && pnpm git-hooks",
     "build": "turbo run build",
     "check-types": "turbo run check-types",
     "clean": "node ./scripts/cleanup.mjs --del-lock",
