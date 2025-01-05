@@ -31,7 +31,10 @@ export function javascript(): Linter.Config[] {
       rules: {
         'accessor-pairs': [
           'error',
-          { enforceForClassMembers: true, setWithoutGet: true },
+          {
+            enforceForClassMembers: true,
+            setWithoutGet: true,
+          },
         ],
         'array-callback-return': 'error',
         'block-scoped-var': 'error',

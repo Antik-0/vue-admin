@@ -1,33 +1,28 @@
-import type { Linter } from 'eslint'
-
+import tsEslint from 'typescript-eslint'
 import {
   ignores,
   javascript,
   jsonc,
   perfectionist,
-  prettier,
   turbo,
   typescript,
   unocss,
   vue,
 } from './plugins/index.js'
 
-type FlatConfig = Linter.Config
-
-export async function defineConfig(configs: FlatConfig | FlatConfig[] = []) {
-  // 这种包模式部分插件需要异步导入才能使用，如果所有配置都在根目录下的config.js文件下引入则不需要
-  const _configs = await Promise.all([
+/**
+ * reference: https://eslint.org/docs/latest/use/configure/configuration-files
+ */
+export async function defineConfig() {
+  const configs = [
+    ignores(),
     turbo(),
     jsonc(),
     javascript(),
     typescript(),
-    unocss(),
     vue(),
+    unocss(),
     perfectionist(),
-    prettier(),
-    ignores(),
-    configs,
-  ])
-
-  return _configs.flat()
+  ].flat()
+  return tsEslint.config(...configs)
 }

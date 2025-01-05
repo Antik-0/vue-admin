@@ -10,8 +10,8 @@
     "dev": "turbo run dev --filter=app",
     "dev:setup": "turbo run dev:setup",
     "git-hooks": "simple-git-hooks",
-    "lint": "eslint --cache",
-    "lint:css": "stylelint \"**/*.{css,vue}\" --cache --cache-location=node_modules/.temp/.stylelintcache",
+    "lint": "eslint --cache --cache-location=.temp/.eslintcache",
+    "lint:css": "stylelint \"**/*.{css,vue}\" --cache --cache-location=.temp/.stylelintcache",
     "lint:debug": "pnpm dlx @eslint/config-inspector@latest",
     "lint:fix": "eslint --fix",
     "preinstall": "pnpm dlx only-allow pnpm",
@@ -43,7 +43,9 @@
     "stylelint": "catalog:",
     "turbo": "catalog:",
     "typescript": "catalog:",
-    "unbuild": "catalog:"
+    "unbuild": "catalog:",
+    "unocss": "catalog:",
+    "vue": "catalog:"
   },
   "packageManager": "pnpm@9.15.2",
   "engines": {

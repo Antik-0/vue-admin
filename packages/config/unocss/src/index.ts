@@ -48,9 +48,6 @@ export const presetBase = definePreset<presetBaseOption, presetBaseTheme>(
         animation: {
           ...animation,
         },
-        borderRadius: {
-          ...borderRadius,
-        },
         boxShadow: {
           switch: `rgba(0, 0, 0, 0.3) 0px 0px 1px,
            rgba(0, 0, 0, 0.2) 0px 1px 2px`,
@@ -59,6 +56,10 @@ export const presetBase = definePreset<presetBaseOption, presetBaseTheme>(
       extendTheme: (theme: Theme) => {
         return {
           ...theme,
+          borderRadius: {
+            ...theme.borderRadius,
+            ...borderRadius,
+          },
           breakpoints,
           colors: {
             ...theme.colors,

@@ -6,7 +6,7 @@ import pluginPerfectionist from 'eslint-plugin-perfectionist'
  */
 export function perfectionist(): Linter.Config[] {
   return [
-    pluginPerfectionist.configs['recommended-natural'] as Linter.Config,
+    pluginPerfectionist.configs['recommended-natural'],
     {
       rules: {
         'perfectionist/sort-decorators': ['off'],

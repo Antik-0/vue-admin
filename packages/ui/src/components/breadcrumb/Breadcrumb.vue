@@ -54,7 +54,7 @@ function handleClick(path?: string) {
                   <UIIcon
                     v-if="showIcon"
                     :icon="item.icon!"
-                    class="size-4 mr-1"
+                    class="mr-1 size-4"
                   />
                   <span>{{ item.title }}</span>
                 </DropdownMenuTrigger>
@@ -80,15 +80,15 @@ function handleClick(path?: string) {
               href="javascript:void 0"
               @click.stop="handleClick(item.path)"
             >
-              <div class="flex flex-center">
-                <UIIcon v-if="showIcon" :icon="item.icon" class="size-4 mr-1" />
+              <div class="flex-center flex">
+                <UIIcon v-if="showIcon" :icon="item.icon" class="mr-1 size-4" />
                 <span>{{ item.title }}</span>
               </div>
             </BreadcrumbLink>
 
             <BreadcrumbPage v-else>
-              <div class="flex flex-center">
-                <UIIcon v-if="showIcon" :icon="item.icon" class="size-4 mr-1" />
+              <div class="flex-center flex">
+                <UIIcon v-if="showIcon" :icon="item.icon" class="mr-1 size-4" />
                 <span>{{ item.title }}</span>
               </div>
             </BreadcrumbPage>

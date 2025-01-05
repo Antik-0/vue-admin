@@ -3,5 +3,5 @@ import { BaseLayout } from '@repo/ui'
 </script>
 
 <template>
-  <BaseLayout />
+  <BaseLayout class="xixi text-accent" />
 </template>

@@ -1,5 +1,7 @@
 @layer base, theme;
 
 @import url('./tailwind-compat.css');
+
 @import url('./theme.css');
+
 @import url('./animate.css');

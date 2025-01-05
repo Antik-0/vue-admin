@@ -21,7 +21,7 @@ const style = computed((): CSSProperties => {
 <template>
   <section
     :style="style"
-    class="border-border bg-background flex w-full border-b transition-all"
+    class="w-full flex border-b border-border bg-background transition-all"
   >
     <slot>
       <TabsView />

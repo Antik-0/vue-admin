@@ -16,7 +16,7 @@ function toggleTheme() {
     :aria-label="theme"
     :class="[`is-${theme}`]"
     aria-live="polite"
-    class="rounded-full theme-toggle"
+    class="theme-toggle rounded-full"
     @click="toggleTheme"
   >
     <svg aria-hidden="true" height="24" viewBox="0 0 24 24" width="24">
@@ -60,19 +60,19 @@ function toggleTheme() {
   }
 
   .theme-toggle__sun {
+    @apply fill-foreground/90 stroke-none;
+
     transition: transform 1.6s cubic-bezier(0.25, 0, 0.2, 1);
     transform-origin: center center;
-
-    @apply fill-foreground/90 stroke-none;
   }
 
   .theme-toggle__sun-beams {
+    @apply stroke-foreground/90 stroke-[2px];
+
     transition:
       transform 1.6s cubic-bezier(0.5, 1.5, 0.75, 1.25),
       opacity 0.6s cubic-bezier(0.25, 0, 0.3, 1);
     transform-origin: center center;
-
-    @apply stroke-foreground/90 stroke-[2px];
   }
 
   &.is-light {

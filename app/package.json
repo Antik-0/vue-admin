@@ -13,6 +13,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@config/unocss": "workspace:*",
     "@core/request": "workspace:*",
     "@core/types": "workspace:*",
     "@repo/icons": "workspace:*",

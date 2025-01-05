@@ -1,5 +1,4 @@
 import type { Component } from 'vue'
-import type { Router, RouteRecordRaw } from 'vue-router'
 
 interface RouteMeta {
   /**

@@ -4,7 +4,7 @@ import { IconBell } from '@repo/icons'
 </script>
 
 <template>
-  <UIIconButton class="rounded-full bell-button">
+  <UIIconButton class="bell-button rounded-full">
     <IconBell />
   </UIIconButton>
 </template>

@@ -1,11 +1,9 @@
 import type { Linter } from 'eslint'
-import { interopDefault } from '../util.js'
+import pluginUnoCSS from '@unocss/eslint-config/flat'
 
-export async function unocss(): Promise<Linter.Config[]> {
-  const [pluginUnoCSS] = await Promise.all([
-    interopDefault(import('@unocss/eslint-config/flat')),
-  ])
-
-  // @ts-expect-error: flat-config
-  return [pluginUnoCSS]
+export function unocss(): Linter.Config[] {
+  return [
+    // @ts-expect-error: no care
+    pluginUnoCSS,
+  ]
 }
