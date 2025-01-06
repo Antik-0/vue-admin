@@ -65,6 +65,7 @@ export function defineConfig(): Config {
       ],
       'selector-class-pattern': null,
       'selector-not-notation': 'complex',
+      'value-keyword-case': null,
 
       'order/order': [
         [
