@@ -29,6 +29,7 @@
     "@core/types": "workspace:*",
     "@repo/icons": "workspace:*",
     "@repo/utils": "workspace:*",
+    "@vueuse/core": "catalog:",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "radix-vue": "^1.9.11",

@@ -5,7 +5,10 @@ import { useLayout } from './hooks/use-layout'
 
 import LayoutContent from './LayoutContent.vue'
 import LayoutHeader from './LayoutHeader.vue'
+import LayoutSidebar from './LayoutSidebar.vue'
 import LayoutTabsbar from './LayoutTabsbar.vue'
+
+import { SidebarProvider } from '#/shadcn-ui/sidebar'
 
 import { UIBreadcrumb } from '#/components/breadcrumb'
 
@@ -73,31 +76,34 @@ const breadcrumbs = ref([
 </script>
 
 <template>
-  <div class="relative min-h-full w-full flex">
-    <div
-      class="flex flex-1 flex-col overflow-hidden transition-all duration-300 ease-in"
-    >
-      <LayoutHeader
-        v-if="headerVisible"
-        :full-width="!isSideMode"
-        :height="headerHeight"
-        :is-mobile="isMobile"
-        :show="!isFullContent && !headerHidden"
-        :sidebar-width="sidebarWidth"
-        :theme="headerTheme"
-        :width="mainStyle.width"
-        :z-index="zIndex"
+  <SidebarProvider>
+    <div class="relative min-h-full w-full flex">
+      <LayoutSidebar />
+      <div
+        class="flex flex-1 flex-col overflow-hidden transition-all duration-300 ease-in"
       >
-        <template #breadcrumb>
-          <slot name="breadcrumb">
-            <div class="px-4">
-              <UIBreadcrumb :breadcrumbs="breadcrumbs" show-icon />
-            </div>
-          </slot>
-        </template>
-      </LayoutHeader>
-      <LayoutTabsbar :height="38" />
-      <LayoutContent />
+        <LayoutHeader
+          v-if="headerVisible"
+          :full-width="!isSideMode"
+          :height="headerHeight"
+          :is-mobile="isMobile"
+          :show="!isFullContent && !headerHidden"
+          :sidebar-width="sidebarWidth"
+          :theme="headerTheme"
+          :width="mainStyle.width"
+          :z-index="zIndex"
+        >
+          <template #breadcrumb>
+            <slot name="breadcrumb">
+              <div class="px-4">
+                <UIBreadcrumb :breadcrumbs="breadcrumbs" show-icon />
+              </div>
+            </slot>
+          </template>
+        </LayoutHeader>
+        <LayoutTabsbar :height="38" />
+        <LayoutContent />
+      </div>
     </div>
-  </div>
+  </SidebarProvider>
 </template>

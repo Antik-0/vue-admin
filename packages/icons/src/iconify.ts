@@ -25,6 +25,7 @@ export { default as IconPin } from './components/IconPin.vue'
 export { default as IconPinOff } from './components/IconPinOff.vue'
 export { default as IconRotateCw } from './components/IconRotateCw.vue'
 export { default as IconSettings } from './components/IconSettings.vue'
+export { default as IconSquareX } from './components/IconSquareX.vue'
 export { default as IconX } from './components/IconX.vue'
 
 import { createIcon } from './create-icon.js'

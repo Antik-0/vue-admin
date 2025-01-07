@@ -49,7 +49,7 @@ function handleDeleteTab(tab: any) {
         }"
         :data-active-tab="activeTab"
         :data-index="index"
-        class="tabs-chrome__item draggable group relative z-0 transition-all -ml-2"
+        class="group tabs-chrome__item draggable relative z-0 transition-all -ml-2"
         @click="activeTab = tab.key"
       >
         <div
