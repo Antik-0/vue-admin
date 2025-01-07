@@ -30,6 +30,10 @@ const tabsView = ref([
 ])
 
 const activeTab = ref<string>('2')
+
+function handleDeleteTab(tab: any) {
+  tabsView.value = tabsView.value.filter(v => v !== tab)
+}
 </script>
 
 <template>
@@ -48,32 +52,16 @@ const activeTab = ref<string>('2')
         class="tabs-chrome__item draggable group relative z-0 transition-all -ml-2"
         @click="activeTab = tab.key"
       >
-        <!-- background -->
         <div
-          class="tabs-chrome__background absolute inset-0 z-[-1] px-[6px] transition-color duration-150"
+          class="tabs-chrome__background absolute inset-0 z-[-1] px-[6px] text-transparent transition-colors group-[.is-active]:text-rose/50"
         >
           <div
-            class="tabs-chrome__background-content h-full rounded-t-md duration-150 group-[.is-active]:bg-red/30"
+            class="tabs-chrome__background-content h-full rounded-t-md bg-current"
           ></div>
-          <svg
-            class="tabs-chrome__background-before absolute bottom-0 left-[-1px] fill-transparent transition-colors duration-150 group-[.is-active]:fill-red/30"
-            height="7"
-            width="7"
-          >
-            <path d="M 0 7 A 7 7 0 0 0 7 0 L 7 7 Z" />
-          </svg>
-          <svg
-            class="tabs-chrome__background-after absolute bottom-0 right-[-1px] fill-transparent transition-colors duration-150 group-[.is-active]:fill-red/30"
-            height="7"
-            width="7"
-          >
-            <path d="M 0 0 A 7 7 0 0 0 7 7 L 0 7 Z" />
-          </svg>
         </div>
 
-        <!-- content -->
         <div
-          class="tabs-chrome__content pointer-events-none h-full inline-flex items-center rounded-[6px] pl-5 pr-9 text-accent-foreground group-[.is-active]:text-red"
+          class="tabs-chrome__content pointer-events-none h-full inline-flex items-center rounded-[6px] pl-5 pr-9 text-accent-foreground group-[.is-active]:text-rose"
         >
           <UIIcon :icon="tab.icon" class="mr-1 size-4" />
           <span class="flex-1 select-none whitespace-nowrap text-sm">
@@ -81,9 +69,9 @@ const activeTab = ref<string>('2')
           </span>
         </div>
 
-        <!-- extra -->
         <span
-          class="top-center absolute right-3 z-[1] rounded bg-transparent p-[2px] transition-colors duration-150 hover:bg-white/50"
+          class="top-center absolute right-3 z-[1] rounded bg-transparent p-[2px] transition-colors hover:bg-white/50"
+          @click.stop="handleDeleteTab(tab)"
         >
           <IconX class="size-3 text-primary" />
         </span>
@@ -103,5 +91,32 @@ const activeTab = ref<string>('2')
       }
     }
   }
+}
+
+.tabs-chrome__background::before,
+.tabs-chrome__background::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  width: 12px;
+  height: 12px;
+}
+
+.tabs-chrome__background::before {
+  left: -6px;
+  background: radial-gradient(
+    circle at 0 0,
+    transparent 12px,
+    currentColor 13px
+  );
+}
+
+.tabs-chrome__background::after {
+  right: -6px;
+  background: radial-gradient(
+    circle at 100% 0,
+    transparent 12px,
+    currentColor 13px
+  );
 }
 </style>
