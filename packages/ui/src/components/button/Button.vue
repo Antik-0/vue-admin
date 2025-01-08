@@ -2,7 +2,7 @@
 import type { ButtonProps } from './index'
 
 import { computed } from 'vue'
-import { IconLoaderCircle } from '#/icons'
+import { IconLoading } from '#/icons'
 import { Button } from '#/shadcn-ui'
 
 interface Props extends ButtonProps {}
@@ -32,7 +32,7 @@ const isDisabled = computed(() => {
     type="button"
   >
     <slot name="loading">
-      <IconLoaderCircle v-if="loading" class="animate-spin" />
+      <IconLoading v-if="loading" class="animate-spin" />
     </slot>
     <slot></slot>
   </Button>

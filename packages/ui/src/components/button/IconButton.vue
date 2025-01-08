@@ -28,12 +28,7 @@ const iconRender = computed(() => {
 </script>
 
 <template>
-  <UIButton
-    v-bind="props"
-    :loading="false"
-    class="text-foreground/80"
-    size="icon"
-  >
+  <UIButton v-bind="props" size="icon">
     <slot>
       <component :is="iconRender" v-if="props.icon" />
     </slot>

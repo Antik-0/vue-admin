@@ -1,4 +1,4 @@
-import type { ButtonVariants } from '#/shadcn-ui'
+import type { ButtonVariants } from '#/shadcn-ui/button'
 import type { HTMLAttributes } from 'vue'
 
 export interface ButtonProps {
