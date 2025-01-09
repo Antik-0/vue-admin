@@ -1,9 +1,8 @@
 <script setup lang="ts">
 import type { ButtonProps } from './index'
-
 import { computed } from 'vue'
 import { IconLoading } from '#/icons'
-import { Button } from '#/shadcn-ui'
+import { Button } from '#/shadcn-ui/button'
 
 interface Props extends ButtonProps {}
 
@@ -17,9 +16,7 @@ const props = withDefaults(defineProps<Props>(), {
   variant: 'default',
 })
 
-const isDisabled = computed(() => {
-  return props.disabled || props.loading
-})
+const isDisabled = computed(() => props.disabled || props.loading)
 </script>
 
 <template>
@@ -31,9 +28,7 @@ const isDisabled = computed(() => {
     as="button"
     type="button"
   >
-    <slot name="loading">
-      <IconLoading v-if="loading" class="animate-spin" />
-    </slot>
+    <IconLoading v-if="loading" />
     <slot></slot>
   </Button>
 </template>

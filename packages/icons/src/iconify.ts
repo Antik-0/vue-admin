@@ -14,6 +14,7 @@ export { default as IconFoldHorizontal } from './components/IconFoldHorizontal.v
 export { default as IconFullscreen } from './components/IconFullscreen.vue'
 export { default as IconLanguages } from './components/IconLanguages.vue'
 export { default as IconLoaderCircle } from './components/IconLoaderCircle.vue'
+export { default as IconLoading } from './components/IconLoading.vue'
 export { default as IconLockKeyhole } from './components/IconLockKeyhole.vue'
 export { default as IconLogOut } from './components/IconLogOut.vue'
 export { default as IconMaximize } from './components/IconMaximize.vue'
