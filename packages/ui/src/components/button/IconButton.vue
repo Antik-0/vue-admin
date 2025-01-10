@@ -17,7 +17,7 @@ const props = withDefaults(defineProps<Props>(), {
   class: '',
   disabled: false,
   icon: undefined,
-  variant: 'ghost',
+  variant: 'outline',
 })
 
 const bindProps = computed(() => {
