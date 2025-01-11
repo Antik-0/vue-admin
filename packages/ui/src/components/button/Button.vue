@@ -2,11 +2,9 @@
 import type { ButtonProps } from './index'
 import { computed } from 'vue'
 import { IconLoading } from '#/icons'
-import { Button } from '#/shadcn-ui/button'
+import { Button as UIButton } from '#/shadcn-ui/button'
 
 interface Props extends ButtonProps {}
-
-defineOptions({ name: 'UIButton' })
 
 const props = withDefaults(defineProps<Props>(), {
   class: '',
@@ -20,7 +18,7 @@ const isDisabled = computed(() => props.disabled || props.loading)
 </script>
 
 <template>
-  <Button
+  <UIButton
     :class="props.class"
     :disabled="isDisabled"
     :size="size"
@@ -30,5 +28,5 @@ const isDisabled = computed(() => props.disabled || props.loading)
   >
     <IconLoading v-if="loading" />
     <slot></slot>
-  </Button>
+  </UIButton>
 </template>

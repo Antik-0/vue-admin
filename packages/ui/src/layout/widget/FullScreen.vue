@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { UIIconButton } from '#/components/button'
+import { IconButton } from '#/components/button'
 import { IconMaximize, IconMinimize } from '@repo/icons'
 
 const isFullScreen = ref(false)
@@ -11,8 +11,8 @@ function toggle() {
 </script>
 
 <template>
-  <UIIconButton class="rounded-full" @click="toggle">
+  <IconButton class="rounded-full" @click="toggle">
     <IconMinimize v-if="isFullScreen" />
     <IconMaximize v-else />
-  </UIIconButton>
+  </IconButton>
 </template>

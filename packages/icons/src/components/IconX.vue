@@ -1,10 +1,3 @@
-<script setup lang="ts">
-import { defineComponent } from 'vue'
-
-defineComponent({
-  name: 'LucideX',
-})
-</script>
 <template>
   <svg
     height="24"

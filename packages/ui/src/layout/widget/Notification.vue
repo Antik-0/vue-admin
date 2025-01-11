@@ -1,12 +1,12 @@
 <script lang="ts" setup>
-import { UIIconButton } from '#/components'
+import { IconButton } from '#/components'
 import { IconBell } from '@repo/icons'
 </script>
 
 <template>
-  <UIIconButton class="bell-button rounded-full">
+  <IconButton class="bell-button rounded-full">
     <IconBell />
-  </UIIconButton>
+  </IconButton>
 </template>
 
 <style scoped>

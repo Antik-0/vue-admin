@@ -1,21 +1,29 @@
-import type { IconProps } from '@iconify/vue'
-import type { FunctionalComponent, MaybeRefOrGetter } from 'vue'
-import { Icon } from '@iconify/vue'
+import type { IconProps as IconifyIconProps } from '@iconify/vue'
+import type { Component, FunctionalComponent, MaybeRefOrGetter } from 'vue'
+import { Icon as IconifyIcon } from '@iconify/vue'
 import { h, toValue } from 'vue'
+import { isComponent } from '@repo/utils'
 
-type FuncIconProps = Omit<IconProps, 'icon'>
+type CreateIconReturn = FunctionalComponent<Omit<IconifyIconProps, 'icon'>>
 
-export type IconifyIcon = FunctionalComponent<FuncIconProps>
-
-export function createIcon(name: MaybeRefOrGetter<string>) {
+export function createIcon(name: MaybeRefOrGetter<string>): CreateIconReturn {
   const iconName = toValue(name)
-
-  const iconifyIcon: IconifyIcon = (props, { attrs }) =>
-    h(Icon, {
+  return (props, { attrs }) =>
+    h(IconifyIcon, {
       icon: iconName,
       ...props,
       ...attrs,
     })
+}
 
-  return iconifyIcon
+interface FunctionalIconProps {
+  icon?: string | Component
+}
+
+type FunctionalIcon = FunctionalComponent<FunctionalIconProps>
+
+export const Icon: FunctionalIcon = props => {
+  const { icon } = props
+  if (!icon) return null
+  return h(isComponent(icon) ? icon : createIcon(icon))
 }

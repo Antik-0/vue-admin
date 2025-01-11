@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import { UIIconButton } from '#/components/button'
+import { IconButton } from '#/components/button'
 
 const isDark = ref(true)
 
@@ -12,7 +12,7 @@ function toggleTheme() {
 </script>
 
 <template>
-  <UIIconButton
+  <IconButton
     :aria-label="theme"
     :class="[`is-${theme}`]"
     aria-live="polite"
@@ -48,7 +48,7 @@ function toggleTheme() {
         <line x1="18.36" x2="19.78" y1="5.64" y2="4.22" />
       </g>
     </svg>
-  </UIIconButton>
+  </IconButton>
 </template>
 
 <style scoped>

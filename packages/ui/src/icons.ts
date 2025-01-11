@@ -1,10 +1,17 @@
 export {
+  Icon,
   IconCheck,
   IconChevronDown,
   IconChevronRight,
+  IconChevronsLeft,
+  IconChevronsRight,
   IconCircle,
   IconLoaderCircle,
+  IconLoading,
   IconMenu,
   IconMoreHorizontal,
+  IconPin,
+  IconPinOff,
   IconSquareX,
+  IconX,
 } from '@repo/icons'

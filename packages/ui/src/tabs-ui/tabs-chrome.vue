@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import type { TabsProps } from './types'
 import { ref } from 'vue'
-import { UIIcon } from '#/components'
-import { IconX } from '@repo/icons'
+import { Icon, IconX } from '#/icons'
 
 interface Props extends TabsProps {}
 
@@ -63,7 +62,7 @@ function handleDeleteTab(tab: any) {
         <div
           class="tabs-chrome__content pointer-events-none h-full inline-flex items-center rounded-[6px] pl-5 pr-9 text-accent-foreground group-[.is-active]:text-rose"
         >
-          <UIIcon :icon="tab.icon" class="mr-1 size-4" />
+          <Icon :icon="tab.icon" class="mr-1 size-4" />
           <span class="flex-1 select-none whitespace-nowrap text-sm">
             {{ tab.title }}
           </span>

@@ -10,7 +10,7 @@ import LayoutTabsbar from './LayoutTabsbar.vue'
 
 import { SidebarProvider } from '#/shadcn-ui/sidebar'
 
-import { UIBreadcrumb } from '#/components/breadcrumb'
+import { Breadcrumb } from '#/components/breadcrumb'
 
 interface Props extends BaseLayoutProps {}
 
@@ -96,7 +96,7 @@ const breadcrumbs = ref([
           <template #breadcrumb>
             <slot name="breadcrumb">
               <div class="px-4">
-                <UIBreadcrumb :breadcrumbs="breadcrumbs" show-icon />
+                <Breadcrumb :breadcrumbs="breadcrumbs" show-icon />
               </div>
             </slot>
           </template>

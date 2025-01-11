@@ -1,8 +1,8 @@
 import type { App } from 'vue'
-import { addCollection, Icon } from '@iconify/vue'
+import { addCollection } from '@iconify/vue'
 import iconJSON from '../dist/icons.json' with { type: 'json' }
+import { Icon } from './create-icon.js'
 
-export * from './create-icon.js'
 export * from './iconify.js'
 
 export function setupIcons(app: App<Element>) {

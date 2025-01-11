@@ -361,6 +361,9 @@ importers:
       '@iconify/vue':
         specifier: ^4.1.2
         version: 4.3.0(vue@3.5.13(typescript@5.7.2))
+      '@repo/utils':
+        specifier: workspace:*
+        version: link:../utils
       esno:
         specifier: 'catalog:'
         version: 4.8.0

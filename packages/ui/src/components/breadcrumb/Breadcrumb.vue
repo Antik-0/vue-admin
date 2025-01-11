@@ -1,12 +1,13 @@
 <script lang="ts" setup>
-import type { BreadcrumbProps } from './props'
+import type { BreadcrumbProps } from './index'
+import { Icon } from '#/icons'
 import {
-  Breadcrumb,
   BreadcrumbItem,
   BreadcrumbLink,
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
+  Breadcrumb as UIBreadcrumb,
 } from '#/shadcn-ui/breadcrumb'
 import {
   DropdownMenu,
@@ -14,11 +15,8 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '#/shadcn-ui/dropdown-menu'
-import { UIIcon } from '../icon'
 
 interface Props extends BreadcrumbProps {}
-
-defineOptions({ name: 'UIBreadcrumb' })
 
 withDefaults(defineProps<Props>(), {
   showIcon: false,
@@ -33,7 +31,7 @@ function handleClick(path?: string) {
 </script>
 
 <template>
-  <Breadcrumb>
+  <UIBreadcrumb>
     <BreadcrumbList>
       <TransitionGroup name="breadcrumb-transition">
         <template
@@ -51,7 +49,7 @@ function handleClick(path?: string) {
                   ]"
                   class="flex items-center bg-transparent"
                 >
-                  <UIIcon
+                  <Icon
                     v-if="showIcon"
                     :icon="item.icon!"
                     class="mr-1 size-4"
@@ -64,7 +62,7 @@ function handleClick(path?: string) {
                     :key="`sub-${menuItem.path}}`"
                     @click.stop="handleClick(menuItem.path)"
                   >
-                    <UIIcon
+                    <Icon
                       v-if="showIcon"
                       :icon="menuItem.icon"
                       class="size-4"
@@ -81,14 +79,14 @@ function handleClick(path?: string) {
               @click.stop="handleClick(item.path)"
             >
               <div class="flex-center flex">
-                <UIIcon v-if="showIcon" :icon="item.icon" class="mr-1 size-4" />
+                <Icon v-if="showIcon" :icon="item.icon" class="mr-1 size-4" />
                 <span>{{ item.title }}</span>
               </div>
             </BreadcrumbLink>
 
             <BreadcrumbPage v-else>
               <div class="flex-center flex">
-                <UIIcon v-if="showIcon" :icon="item.icon" class="mr-1 size-4" />
+                <Icon v-if="showIcon" :icon="item.icon" class="mr-1 size-4" />
                 <span>{{ item.title }}</span>
               </div>
             </BreadcrumbPage>
@@ -97,5 +95,5 @@ function handleClick(path?: string) {
         </template>
       </TransitionGroup>
     </BreadcrumbList>
-  </Breadcrumb>
+  </UIBreadcrumb>
 </template>

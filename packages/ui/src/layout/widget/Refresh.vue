@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { UIIconButton } from '#/components/button'
+import { IconButton } from '#/components/button'
 import { IconRotateCw } from '@repo/icons'
 </script>
 
 <template>
-  <UIIconButton>
+  <IconButton>
     <IconRotateCw />
-  </UIIconButton>
+  </IconButton>
 </template>

@@ -9,5 +9,5 @@ export interface ButtonProps {
   variant?: ButtonVariants['variant']
 }
 
-export { default as UIButton } from './Button.vue'
-export { default as UIIconButton } from './IconButton.vue'
+export { default as Button } from './Button.vue'
+export { default as IconButton } from './IconButton.vue'

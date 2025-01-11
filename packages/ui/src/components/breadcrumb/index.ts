@@ -1,1 +1,15 @@
-export { default as UIBreadcrumb } from './Breadcrumb.vue'
+import type { Component } from 'vue'
+
+export interface BreadcrumbItem {
+  icon?: string | Component
+  items?: BreadcrumbItem[]
+  path?: string
+  title?: string
+}
+
+export interface BreadcrumbProps {
+  breadcrumbs: BreadcrumbItem[]
+  showIcon?: boolean
+}
+
+export { default as Breadcrumb } from './Breadcrumb.vue'

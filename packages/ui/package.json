@@ -11,14 +11,6 @@
     ".": {
       "types": "./src/index.ts",
       "default": "./src/index.ts"
-    },
-    "./sidebar": {
-      "types": "./src/components/sidebar/index.ts",
-      "default": "./src/components/sidebar/index.ts"
-    },
-    "./menu": {
-      "types": "./src/components/menu/index.ts",
-      "default": "./src/components/menu/index.ts"
     }
   },
   "scripts": {
