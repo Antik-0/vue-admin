@@ -6,7 +6,7 @@ import dashboard from './modules/dashboard.ts'
 import demos from './modules/demo.ts'
 import logos from './modules/logos.ts'
 
-const viewRoutes = [...dashboard, ...logos, ...demos]
+const viewRoutes = [...dashboard, ...demos, ...logos]
 
 const router = createRouter({
   history: createWebHistory(),

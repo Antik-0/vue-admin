@@ -1,8 +1,12 @@
-import type { Component, Ref } from 'vue'
+import type { Component } from 'vue'
 
 interface MenuRecordRaw {
   /**
-   * 菜单路径
+   * 菜单唯一标识符
+   */
+  key: string
+  /**
+   * 菜单路由
    */
   path: string
   /**
@@ -22,27 +26,29 @@ interface MenuRecordRaw {
    */
   activeIcon?: string | Component
   /**
-   * 当前激活的菜单
-   */
-  activePath?: string
-  /**
-   * 隐藏当前菜单
+   * 是否分组，true：会缩小一层嵌套
    * @default false
    */
-  hide?: boolean
+  isGroup: boolean
+  /**
+   * isGroup 模式下是否可折叠
+   * @default false
+   */
+  collapsible: boolean
+  /**
+   * 隐藏菜单
+   * @default false
+   */
+  hidden: boolean
   /**
    * 隐藏子菜单
    * @default false
    */
-  hideChildren?: boolean
+  hideChildren: boolean
   /**
-   * 菜单排序
+   * 排序
    */
-  order?: number
+  order: number
 }
 
-interface MenuState {
-  menu: Ref<MenuRecordRaw[]>
-}
-
-export type { MenuRecordRaw, MenuState }
+export type { MenuRecordRaw }

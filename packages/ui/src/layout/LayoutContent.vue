@@ -1,5 +1,9 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { SidebarTrigger } from '#/components/sidebar'
+</script>
 
 <template>
-  <main></main>
+  <main>
+    <SidebarTrigger />
+  </main>
 </template>

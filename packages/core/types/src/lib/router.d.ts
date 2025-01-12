@@ -1,22 +1,18 @@
 import type { Component } from 'vue'
 
-interface RouteMeta {
+interface RouteMetaRaw {
   /**
    * 路由标题
    */
   title: string
   /**
-   * 路由图标(菜单/tab)
+   * 路由图标(menu/tab)
    */
   icon?: string | Component
   /**
-   * 路由激活图标(菜单/tab)
+   * 路由激活图标(menu/tab)
    */
   activeIcon?: string | Component
-  /**
-   * 当前激活的菜单，有时候不想激活现有菜单，需要激活父级菜单时使用
-   */
-  activePath?: string
   /**
    * 是否固定在标签栏
    * @default false
@@ -27,25 +23,35 @@ interface RouteMeta {
    */
   authority?: string[]
   /**
-   * 在侧边栏中隐藏
+   * 在标签栏中隐藏
+   * @default false
+   */
+  hideInTab?: boolean
+  /**
+   * 在菜单中隐藏
    * @default false
    */
   hideInMenu?: boolean
   /**
-   * 隐藏当前路由的子路由
+   * 在菜单中隐藏子菜单
    * @default false
    */
   hideChildrenInMenu?: boolean
+  /**
+   * 在菜单中是否分组，true：会缩小一层嵌套
+   * @default false
+   */
+  isGroup?: boolean
+  /**
+   * isGroup 模式下是否可折叠
+   * @default false
+   */
+  collapsible?: boolean
   /**
    * 在面包屑中隐藏
    * @default false
    */
   hideInBreadcrumb?: boolean
-  /**
-   * 在标签栏中隐藏
-   * @default false
-   */
-  hideInTab?: boolean
   /**
    * 是否持久化缓存
    * @default false
@@ -65,4 +71,4 @@ interface RouteMeta {
   order?: number
 }
 
-export { RouteMeta }
+export type { RouteMetaRaw }

@@ -10,6 +10,8 @@ export {
   IconLoading,
   IconMenu,
   IconMoreHorizontal,
+  IconPanelLeft,
+  IconPanelLeftOpen,
   IconPin,
   IconPinOff,
   IconSquareX,

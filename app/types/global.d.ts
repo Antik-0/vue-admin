@@ -1,6 +1,6 @@
 export {}
 
-import type { RouteMeta as _RouterMeta } from '@core/types'
+import type { RouteMetaRaw } from '@core/types'
 import type { DefineComponent } from 'vue'
 
 import 'vue-router'
@@ -11,7 +11,7 @@ declare module '*.vue' {
 }
 
 declare module 'vue-router' {
-  interface RouteMeta extends _RouterMeta {}
+  interface RouteMeta extends RouteMetaRaw {}
 }
 
 declare global {

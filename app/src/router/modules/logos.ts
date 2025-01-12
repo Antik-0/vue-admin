@@ -9,7 +9,9 @@ const routes: RouteRecordRaw[] = [
     path: '/logos',
     component: AppLayout,
     meta: {
+      collapsible: true,
       icon: 'fa:android',
+      isGroup: true,
       title: '技术栈',
     },
     children: [
