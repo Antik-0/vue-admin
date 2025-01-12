@@ -6,12 +6,7 @@ import {
   transformerVariantGroup,
 } from 'unocss'
 import { rules } from './rules/index.js'
-import {
-  animation,
-  borderRadius,
-  breakpoints,
-  shadcnUIColors,
-} from './theme/index.js'
+import { customTheme } from './theme/index.js'
 
 export interface presetBaseOption {
   darkClass?: string
@@ -46,11 +41,10 @@ export const presetBase = definePreset<presetBaseOption, presetBaseTheme>(
       rules: [...rules],
       theme: {
         animation: {
-          ...animation,
+          ...customTheme.animation,
         },
         boxShadow: {
-          switch: `rgba(0, 0, 0, 0.3) 0px 0px 1px,
-           rgba(0, 0, 0, 0.2) 0px 1px 2px`,
+          ...customTheme.boxShadow,
         },
       },
       extendTheme: (theme: Theme) => {
@@ -58,12 +52,14 @@ export const presetBase = definePreset<presetBaseOption, presetBaseTheme>(
           ...theme,
           borderRadius: {
             ...theme.borderRadius,
-            ...borderRadius,
+            ...customTheme.borderRadius,
           },
-          breakpoints,
+          breakpoints: {
+            ...customTheme.breakpoints,
+          },
           colors: {
             ...theme.colors,
-            ...shadcnUIColors,
+            ...customTheme.colors,
           },
         }
       },
