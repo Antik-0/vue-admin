@@ -16,6 +16,7 @@ catalog:
   simple-git-hooks: ^2.11.1
   lint-staged: ^15.3.0
   picocolors: ^1.1.1
+  vitest: ^2.1.8
   '@vueuse/core': ^12.3.0
 
   # app

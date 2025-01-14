@@ -9,6 +9,7 @@
     "antfu.unocss",
     "vue.volar",
     "donjayamanne.githistory",
-    "ms-vscode.extension-test-runner"
+    "ms-vscode.extension-test-runner",
+    "vitest.explorer"
   ]
 }

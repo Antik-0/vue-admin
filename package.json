@@ -46,9 +46,10 @@
     "typescript": "catalog:",
     "unbuild": "catalog:",
     "unocss": "catalog:",
+    "vitest": "catalog:",
     "vue": "catalog:"
   },
-  "packageManager": "pnpm@9.15.2",
+  "packageManager": "pnpm@9.15.4",
   "engines": {
     "node": ">=20",
     "pnpm": ">=9"
