@@ -1,9 +1,7 @@
-@layer base, theme;
+@layer theme;
 
 @import url('./tailwind-compat.css');
 
 @import url('./theme.css');
-
-@import url('./animate.css');
 
 @import url('./transition.css');

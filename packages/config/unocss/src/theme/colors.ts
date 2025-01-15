@@ -5,15 +5,6 @@ export const shadcnUIColors = {
   input: 'hsl(var(--input))',
   ring: 'hsl(var(--ring))',
 
-  'sidebar-accent': 'hsl(var(--sidebar-accent))',
-  'sidebar-accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
-  'sidebar-background': 'hsl(var(--sidebar-background))',
-  'sidebar-border': 'hsl(var(--sidebar-border))',
-  'sidebar-foreground': 'hsl(var(--sidebar-foreground))',
-  'sidebar-primary': 'hsl(var(--sidebar-primary))',
-  'sidebar-primary-foreground': 'hsl(var(--sidebar-primary-foreground))',
-  'sidebar-ring': 'hsl(var(--sidebar-ring))',
-
   accent: {
     DEFAULT: 'hsl(var(--accent))',
     foreground: 'hsl(var(--accent-foreground))',
@@ -42,4 +33,13 @@ export const shadcnUIColors = {
     DEFAULT: 'hsl(var(--secondary))',
     foreground: 'hsl(var(--secondary-foreground))',
   },
+
+  'sidebar-accent': 'hsl(var(--sidebar-accent))',
+  'sidebar-accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
+  'sidebar-background': 'hsl(var(--sidebar-background))',
+  'sidebar-border': 'hsl(var(--sidebar-border))',
+  'sidebar-foreground': 'hsl(var(--sidebar-foreground))',
+  'sidebar-primary': 'hsl(var(--sidebar-primary))',
+  'sidebar-primary-foreground': 'hsl(var(--sidebar-primary-foreground))',
+  'sidebar-ring': 'hsl(var(--sidebar-ring))',
 }

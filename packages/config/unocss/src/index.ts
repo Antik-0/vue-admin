@@ -43,9 +43,6 @@ export const presetBase = definePreset<presetBaseOption, presetBaseTheme>(
         animation: {
           ...customTheme.animation,
         },
-        boxShadow: {
-          ...customTheme.boxShadow,
-        },
       },
       extendTheme: (theme: Theme) => {
         return {

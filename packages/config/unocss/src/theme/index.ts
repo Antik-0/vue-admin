@@ -16,27 +16,22 @@ export const borderRadius = {
   xl: 'calc(var(--radius) + 4px)',
 } as const
 
-export const boxShadow = {
-  switch: `rgba(0, 0, 0, 0.3) 0px 0px 1px,
-           rgba(0, 0, 0, 0.2) 0px 1px 2px`,
-} as const
-
 export const animation = {
   keyframes: {
     'accordion-down': `{
       from { height: 0 }
-      to { height: 'var(--radix-accordion-content-height)' }
+      to { height: var(--radix-accordion-content-height) }
     }`,
     'accordion-up': `{
-      from { height: 'var(--radix-accordion-content-height)' }
+      from { height: var(--radix-accordion-content-height) }
       to { height: 0 }
     }`,
     'collapsible-down': `{
       from { height: 0 }
-      to { height: 'var(--radix-collapsible-content-height)' }
+      to { height: var(--radix-collapsible-content-height) }
     }`,
     'collapsible-up': `{
-      from { height: 'var(--radix-collapsible-content-height)' }
+      from { height: var(--radix-collapsible-content-height) }
       to { height: 0 }
     }`,
   },
@@ -45,7 +40,6 @@ export const animation = {
     'accordion-up': '0.2s',
     'collapsible-down': '0.2s',
     'collapsible-up': '0.2s',
-    ping: '5s',
   },
   timingFns: {
     'accordion-down': 'ease-in-out',
@@ -58,7 +52,6 @@ export const animation = {
 export const customTheme = {
   breakpoints,
   borderRadius,
-  boxShadow,
   animation,
   colors: { ...shadcnUIColors },
 }
