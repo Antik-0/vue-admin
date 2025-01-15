@@ -9,7 +9,6 @@ import {
   IconPinOff,
 } from '#/icons'
 import { Sidebar, SidebarFooter, SidebarHeader } from '#/shadcn-ui/sidebar'
-import SidebarContent from './SidebarContent.vue'
 
 interface Props extends SidebarProps {}
 
@@ -30,8 +29,6 @@ const isIconCollapsible = computed(() => props.collapsible === 'icon')
         <IconButton :icon="IconPinOff" />
       </div>
     </SidebarHeader>
-
-    <SidebarContent :menus="sidebarMenu" />
 
     <SidebarFooter>
       <div class="flex items-center justify-between">
