@@ -12,3 +12,8 @@
   opacity: 0;
   transform: translate(-15px);
 }
+
+.collapse-enter-active,
+.collapse-leave-active {
+  transition: max-height 0.4s ease-in-out;
+}

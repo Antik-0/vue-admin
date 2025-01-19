@@ -65,10 +65,3 @@ const on = {
     <slot></slot>
   </Transition>
 </template>
-
-<style>
-.collapse-enter-active,
-.collapse-leave-active {
-  transition: max-height 0.4s ease-in-out;
-}
-</style>
