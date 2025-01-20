@@ -12,7 +12,7 @@ const isCollapsed = computed(() => state.value === 'collapsed')
 <template>
   <IconButton
     :icon="isCollapsed ? IconPanelLeftOpen : IconPanelLeft"
-    data-sidebar="  trigger"
+    data-sidebar="trigger"
     variant="ghost"
     @click="toggleSidebar"
   />

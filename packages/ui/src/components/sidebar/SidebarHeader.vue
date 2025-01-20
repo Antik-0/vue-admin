@@ -2,15 +2,17 @@
 import type { HTMLAttributes } from 'vue'
 import { cn } from '#/utils'
 
-const props = defineProps<{
+interface Props {
   class?: HTMLAttributes['class']
-}>()
+}
+
+const props = defineProps<Props>()
 </script>
 
 <template>
   <div
     :class="cn('flex flex-col gap-2 p-2', props.class)"
-    data-sidebar="footer"
+    data-sidebar="header"
   >
     <slot></slot>
   </div>

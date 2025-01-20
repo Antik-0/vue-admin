@@ -1,11 +1,9 @@
 import type { SidebarProps as SidebarPropsRaw } from '#/shadcn-ui/sidebar'
-import type { MenuRecordRaw } from '@core/types'
 
-interface SidebarProps extends SidebarPropsRaw {
-  sidebarMenu?: MenuRecordRaw[]
-}
+interface SidebarProps extends SidebarPropsRaw {}
 
-export type { SidebarProps, SidebarPropsRaw }
+export type { SidebarProps }
 
 export { default as Sidebar } from './Sidebar.vue'
+export { default as SidebarMenuItem } from './SidebarMenuItem.vue'
 export { default as SidebarTrigger } from './SidebarTrigger.vue'

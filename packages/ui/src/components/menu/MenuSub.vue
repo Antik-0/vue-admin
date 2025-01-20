@@ -47,7 +47,7 @@ provide<MenuSubProvider>(`menusub:${instance.uid}`, {
   <li :data-state="collapsed ? 'close' : 'open'" role="menuitem">
     <div
       :style="menusubLabelStyle"
-      class="relative box-border h-10 w-full flex cursor-pointer items-center gap-2 whitespace-nowrap rounded-md py-2 text-base transition-[all] [&>svg]:shrink-0 hover:bg-sidebar-accent hover:text-sidebar-accent-foreground [&>svg]:transition-transform [&>svg]:duration-400 group-hover/item:[&>svg]:scale-120"
+      class="relative box-border h-10 w-full flex cursor-pointer items-center gap-2 whitespace-nowrap rounded-md py-2 text-base transition-[all] [&>svg]:shrink-0 hover:bg-sidebar-accent hover:text-sidebar-accent-foreground [&>svg]:transition-transform [&>svg]:duration-400"
       @click="collapsed = !collapsed"
     >
       <slot name="title">

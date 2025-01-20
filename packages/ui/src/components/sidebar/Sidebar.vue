@@ -1,43 +1,33 @@
 <script setup lang="ts">
 import type { SidebarProps } from './index'
-import { computed } from 'vue'
-import { IconButton } from '#/components'
-import {
-  IconChevronsLeft,
-  IconChevronsRight,
-  IconPin,
-  IconPinOff,
-} from '#/icons'
-import { Sidebar, SidebarFooter, SidebarHeader } from '#/shadcn-ui/sidebar'
+import { ScrollArea } from '#/shadcn-ui/scroll-area'
+import { Sidebar } from '#/shadcn-ui/sidebar'
+import SidebarFooter from './SidebarFooter.vue'
+import SidebarHeader from './SidebarHeader.vue'
 
 interface Props extends SidebarProps {}
+
+defineOptions({ name: 'SidebarView' })
 
 const props = withDefaults(defineProps<Props>(), {
   collapsible: 'icon',
   side: 'left',
   variant: 'sidebar',
-  sidebarMenu: () => [],
 })
-
-const isIconCollapsible = computed(() => props.collapsible === 'icon')
 </script>
 
 <template>
   <Sidebar v-bind="props">
     <SidebarHeader>
-      <div class="flex items-center">
-        <IconButton :icon="IconPinOff" />
-      </div>
+      <slot name="header"> </slot>
     </SidebarHeader>
 
+    <ScrollArea class="flex-1">
+      <slot></slot>
+    </ScrollArea>
+
     <SidebarFooter>
-      <div class="flex items-center justify-between">
-        <IconButton
-          :icon="isIconCollapsible ? IconChevronsRight : IconChevronsLeft"
-          class="size-6"
-        />
-        <IconButton :icon="IconPin" class="size-6" />
-      </div>
+      <slot name="footer"> </slot>
     </SidebarFooter>
   </Sidebar>
 </template>
