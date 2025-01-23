@@ -25,10 +25,10 @@ const isIconCollapsible = computed(() => sidebarState.collapsible === 'icon')
     <template #header>
       <div class="flex items-center justify-between">
         <IconButton
-          :icon="isIconCollapsible ? IconChevronsRight : IconChevronsLeft"
           class="size-6"
+          :icon="isIconCollapsible ? IconChevronsRight : IconChevronsLeft"
         />
-        <IconButton :icon="IconPin" class="size-6" />
+        <IconButton class="size-6" :icon="IconPin" />
       </div>
     </template>
 
@@ -43,10 +43,10 @@ const isIconCollapsible = computed(() => sidebarState.collapsible === 'icon')
     <template #footer>
       <div class="flex items-center justify-between">
         <IconButton
-          :icon="isIconCollapsible ? IconChevronsRight : IconChevronsLeft"
           class="size-6"
+          :icon="isIconCollapsible ? IconChevronsRight : IconChevronsLeft"
         />
-        <IconButton :icon="IconPin" class="size-6" />
+        <IconButton class="size-6" :icon="IconPin" />
       </div>
     </template>
   </Sidebar>

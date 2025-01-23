@@ -1,22 +1,23 @@
 <script setup lang="ts">
-import type { ComponentInternalInstance, StyleValue } from 'vue'
-import type { MenuSubProvider } from './types'
+import type { ComponentInternalInstance } from 'vue'
+import type { MenuSubProps, MenuSubProvider, StyleValue } from './types'
 import { computed, getCurrentInstance, inject, provide, ref } from 'vue'
 import { IconChevronDown } from '#/icons'
 import { CollapseTransition } from '../collapse-transition'
 import { useMenu } from './use-menu'
 
-interface Props {
-  title?: string
-}
-
 defineOptions({ name: 'MenuSub' })
 
-withDefaults(defineProps<Props>(), {})
+const props = withDefaults(defineProps<MenuSubProps>(), {
+  disabled: false,
+})
 
 const collapsed = ref(false)
 
-const { levelOffsetCssVar } = useMenu()
+const { activeParentIndex, levelOffsetCssVar } = useMenu()
+
+const isActive = computed(() => activeParentIndex.value.includes(props.index))
+
 const menusubLabelStyle = computed<StyleValue>(() => {
   return {
     paddingLeft: levelOffsetCssVar,
@@ -46,8 +47,9 @@ provide<MenuSubProvider>(`menusub:${instance.uid}`, {
 <template>
   <li :data-state="collapsed ? 'close' : 'open'" role="menuitem">
     <div
+      class="group/item relative box-border h-10 w-full flex cursor-pointer items-center gap-2 whitespace-nowrap rounded-md py-2 text-base transition-[all] hover:bg-sidebar-accent data-[active=true]:text-rose-500 hover:text-sidebar-accent-foreground"
+      :data-active="isActive"
       :style="menusubLabelStyle"
-      class="relative box-border h-10 w-full flex cursor-pointer items-center gap-2 whitespace-nowrap rounded-md py-2 text-base transition-[all] [&>svg]:shrink-0 hover:bg-sidebar-accent hover:text-sidebar-accent-foreground [&>svg]:transition-transform [&>svg]:duration-400"
       @click="collapsed = !collapsed"
     >
       <slot name="title">
@@ -55,17 +57,17 @@ provide<MenuSubProvider>(`menusub:${instance.uid}`, {
       </slot>
       <span class="top-center absolute right-[var(--menu-padding)]">
         <IconChevronDown
-          :style="!collapsed ? 'transform: rotateZ(180deg)' : ''"
           class="transition-transform duration-400"
+          :style="!collapsed ? 'transform: rotateZ(180deg)' : ''"
         />
       </span>
     </div>
     <CollapseTransition>
       <ol
         v-show="!collapsed"
-        :style="menuLevelCssVar"
         class="flex flex-col gap-1"
         role="menu"
+        :style="menuLevelCssVar"
       >
         <slot></slot>
       </ol>

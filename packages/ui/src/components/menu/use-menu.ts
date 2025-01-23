@@ -1,8 +1,10 @@
-import type { ComputedRef, EffectScope, Reactive } from 'vue'
+import type { ComputedRef, EffectScope, Reactive, Ref } from 'vue'
 import type { MenuProps } from './types.ts'
-import { computed, effectScope, onBeforeUnmount, reactive } from 'vue'
+import { computed, effectScope, onBeforeUnmount, reactive, ref } from 'vue'
 
 interface MenuState {
+  activeIndex: Ref<string | null>
+  activeParentIndex: Ref<string[]>
   isAccordion: ComputedRef<boolean>
   isCollapse: ComputedRef<boolean>
   levelOffsetCssVar: string
@@ -16,6 +18,9 @@ function createMenuScope<P extends MenuProps>() {
   let scope: EffectScope | null = null
 
   function createState(props: P) {
+    const activeIndex = ref<string | null>(null)
+    const activeParentIndex = ref<string[]>([])
+
     const isAccordion = computed(() => props.accordion)
     const isCollapse = computed(() => props.collapse)
 
@@ -35,6 +40,8 @@ function createMenuScope<P extends MenuProps>() {
     const levelOffsetCssVar = `calc(var(--menu-padding) + ${levelOffset})`
 
     return {
+      activeIndex,
+      activeParentIndex,
       isAccordion,
       isCollapse,
       levelOffsetCssVar,

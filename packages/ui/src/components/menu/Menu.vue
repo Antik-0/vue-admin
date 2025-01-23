@@ -1,19 +1,16 @@
 <script setup lang="ts">
-import type { HTMLAttributes, StyleValue } from 'vue'
-import type { MenuProps, MenuSubProvider } from './types'
+import type { MenuProps, MenuSubProvider, StyleValue } from './types'
 import { computed, getCurrentInstance, provide } from 'vue'
 import { cn } from '#/utils'
 import { useMenu } from './use-menu'
 
-interface Props extends MenuProps {
-  class?: HTMLAttributes['class']
-}
-
 defineOptions({ name: 'MenuView' })
 
-const props = withDefaults(defineProps<Props>(), {
+const props = withDefaults(defineProps<MenuProps>(), {
   accordion: false,
+  class: '',
   collapse: false,
+  defaultIndex: '',
 })
 
 const { isAccordion, isCollapse, menuCssVar } = useMenu(props)
@@ -40,9 +37,9 @@ provide<MenuSubProvider>(`menusub:${instance.uid}`, {
 <template>
   <menu
     :class="cn('flex flex-col gap-1', props.class)"
-    :style="menuStyle"
     v-bind="menuElementState"
     role="menu"
+    :style="menuStyle"
   >
     <slot></slot>
   </menu>

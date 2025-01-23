@@ -17,9 +17,13 @@ const hasSubMenu = computed(() => {
 </script>
 
 <template>
-  <MenuSub v-if="hasSubMenu">
+  <MenuSub v-if="hasSubMenu" :index="menuItem.path">
     <template #title>
-      <Icon v-if="menuItem.icon" :icon="menuItem.icon" />
+      <Icon
+        v-if="menuItem.icon"
+        class="shrink-0 transition-transform duration-400 group-hover/item:scale-120"
+        :icon="menuItem.icon"
+      />
       <span>{{ menuItem.name }}</span>
     </template>
     <SidebarMenuItem
@@ -38,9 +42,13 @@ const hasSubMenu = computed(() => {
       :menu-item="subMenuItem"
     />
   </MenuItemGroup>
-  <MenuItem v-else as-child>
+  <MenuItem v-else :index="menuItem.path" as-child>
     <MenuItemLink :to="menuItem.path">
-      <Icon v-if="menuItem.icon" :icon="menuItem.icon" />
+      <Icon
+        v-if="menuItem.icon"
+        class="shrink-0 transition-transform duration-400 group-hover/item:scale-120"
+        :icon="menuItem.icon"
+      />
       <span>{{ menuItem.name }}</span>
     </MenuItemLink>
   </MenuItem>
