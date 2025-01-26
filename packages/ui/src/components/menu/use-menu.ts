@@ -1,77 +1,74 @@
-import type { ComputedRef, EffectScope, Reactive, Ref } from 'vue'
 import type { MenuProps } from './types.ts'
-import { computed, effectScope, onBeforeUnmount, reactive, ref } from 'vue'
+import { reactive, ref, watch } from 'vue'
 
-interface MenuState {
-  activeIndex: Ref<string | null>
-  activeParentIndex: Ref<string[]>
-  isAccordion: ComputedRef<boolean>
-  isCollapse: ComputedRef<boolean>
-  levelOffsetCssVar: string
-  menuCssVar: Reactive<Record<string, string>>
-}
+export const useMenu = (props: MenuProps) => {
+  /**
+   * menu css vars
+   */
+  const menuCssVar = reactive({
+    '--menu-level': '0',
+    '--menu-level-padding': '24px',
+  })
 
-interface MenuContext extends MenuState {}
+  /**
+   * menu title padding left css var
+   */
+  const levelOffsetCssVar = `calc(8px + var(--menu-level, 0) * var(--menu-level-padding))`
 
-function createMenuScope<P extends MenuProps>() {
-  let context: MenuContext | null = null
-  let scope: EffectScope | null = null
+  /**
+   * active menuItem and menuSub
+   */
+  const activeIndex = ref<string>(props.defaultIndex ?? '')
+  const activeMenus = ref<string[]>([])
 
-  function createState(props: P) {
-    const activeIndex = ref<string | null>(null)
-    const activeParentIndex = ref<string[]>([])
+  watch(
+    () => props.defaultIndex,
+    val => {
+      activeIndex.value = val ?? ''
+    }
+  )
 
-    const isAccordion = computed(() => props.accordion)
-    const isCollapse = computed(() => props.collapse)
+  function handleMenuItemClick(index: string, indexPath: string[]) {
+    if (index === activeIndex.value) return
+    activeIndex.value = index
+    activeMenus.value = indexPath
+  }
 
-    /**
-     * menu css vars
-     */
-    const menuCssVar = reactive({
-      '--menu-level': '0',
-      '--menu-level-padding': '24px',
-      '--menu-padding': '8px',
-    })
+  /**
+   * opened sub menu
+   */
+  const openedMenus = ref<string[]>([])
 
-    /**
-     * sub menu padding left css var
-     */
-    const levelOffset = 'var(--menu-level, 0) * var(--menu-level-padding)'
-    const levelOffsetCssVar = `calc(var(--menu-padding) + ${levelOffset})`
+  function openMenu(index: string, indexPath: string[]) {
+    if (props.accordion) {
+      openedMenus.value = openedMenus.value.filter(menuIndex =>
+        indexPath.includes(menuIndex)
+      )
+    }
+    openedMenus.value.push(index)
+  }
 
-    return {
-      activeIndex,
-      activeParentIndex,
-      isAccordion,
-      isCollapse,
-      levelOffsetCssVar,
-      menuCssVar,
+  function closeMenu(index: string) {
+    openedMenus.value = openedMenus.value.filter(menu => !menu.includes(index))
+  }
+
+  function handleMenuSubClick(index: string, indexPath: string[]) {
+    const isOpened = openedMenus.value.includes(index)
+    if (isOpened) {
+      closeMenu(index)
+    } else {
+      openMenu(index, indexPath)
     }
   }
 
-  function createMenuContext(props: P) {
-    const state = createState(props)
-
-    /**
-     * 创建 menu 上下文的组件，自动销毁 menu scope
-     */
-    onBeforeUnmount(() => {
-      scope && scope.stop()
-    })
-
-    return state as MenuContext
-  }
-
-  return (props?: P): MenuContext => {
-    if (!context) {
-      if (!props) {
-        throw new Error('[hook:useMenu] except type MenuProps')
-      }
-      scope = effectScope()
-      context = scope.run(() => createMenuContext(props!))!
-    }
-    return context
+  return {
+    activeIndex,
+    activeMenus,
+    levelOffsetCssVar,
+    menuCssVar,
+    openedMenus,
+    // methods
+    handleMenuItemClick,
+    handleMenuSubClick,
   }
 }
-
-export const useMenu = createMenuScope<MenuProps>()

@@ -1,5 +1,5 @@
 import type { PrimitiveProps } from 'radix-vue'
-import type { ComponentInstance, HTMLAttributes, StyleValue } from 'vue'
+import type { ComponentInstance, HTMLAttributes, Ref, StyleValue } from 'vue'
 
 export type { ComponentInstance, PrimitiveProps, StyleValue }
 
@@ -22,10 +22,20 @@ export interface MenuSubProps {
   title?: string
 }
 
-export interface MenuSubProvider {
-  menuLevel: number
-}
-
 export interface MenuItemGroupProps {
   title?: string
+}
+
+export interface MenuProvider {
+  activeIndex: Ref<string>
+  activeMenus: Ref<string[]>
+  isCollapsed: Ref<boolean>
+  levelOffsetCssVar: string
+  openedMenus: Ref<string[]>
+  handleMenuItemClick: (index: string, indexPath: string[]) => void
+  handleMenuSubClick: (index: string, indexPath: string[]) => void
+}
+
+export interface MenuSubProvider {
+  menuLevel: number
 }

@@ -22,19 +22,13 @@ const isExternalLink = computed(() => {
   <a v-if="isExternalLink" v-bind="attrs" :href="to" target="_blank">
     <slot></slot>
   </a>
-  <RouterLink
-    v-else
-    v-slot="{ isActive, href, navigate }"
-    v-bind="props"
-    custom
-  >
-    <a
+  <RouterLink v-else v-slot="{ isActive, navigate }" v-bind="props" custom>
+    <div
       v-bind="attrs"
       :class="[isActive ? activeClass : inactiveClass]"
-      :href="href"
       @click="navigate"
     >
       <slot></slot>
-    </a>
+    </div>
   </RouterLink>
 </template>

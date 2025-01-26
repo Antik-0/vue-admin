@@ -21,7 +21,7 @@ const hasSubMenu = computed(() => {
     <template #title>
       <Icon
         v-if="menuItem.icon"
-        class="shrink-0 transition-transform duration-400 group-hover/item:scale-120"
+        class="ui-menu-item__icon"
         :icon="menuItem.icon"
       />
       <span>{{ menuItem.name }}</span>
@@ -46,10 +46,29 @@ const hasSubMenu = computed(() => {
     <MenuItemLink :to="menuItem.path">
       <Icon
         v-if="menuItem.icon"
-        class="shrink-0 transition-transform duration-400 group-hover/item:scale-120"
+        class="ui-menu-item__icon"
         :icon="menuItem.icon"
       />
       <span>{{ menuItem.name }}</span>
     </MenuItemLink>
   </MenuItem>
 </template>
+
+<style>
+.ui-menu-item__icon {
+  width: 1rem;
+  height: 1rem;
+  flex-shrink: 0;
+  transition: transform 0.4s ease-in-out;
+}
+
+.ui-menu-sub__title:not(.is-disabled):hover > .ui-menu-item__icon {
+  transform: scale(1.2);
+}
+
+.ui-menu-item:not(.is-disabled):hover
+  > .ui-menu-item__content
+  > .ui-menu-item__icon {
+  transform: scale(1.2);
+}
+</style>

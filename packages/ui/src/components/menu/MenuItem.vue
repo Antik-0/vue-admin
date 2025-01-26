@@ -1,9 +1,8 @@
 <script setup lang="ts">
-import type { MenuItemProps, MenuSubProps, StyleValue } from './types'
+import type { MenuItemProps, MenuProvider, StyleValue } from './types'
 import { Primitive } from 'radix-vue'
-import { computed, getCurrentInstance } from 'vue'
+import { computed, getCurrentInstance, inject } from 'vue'
 import { cn } from '#/utils'
-import { useMenu } from './use-menu'
 
 const props = withDefaults(defineProps<MenuItemProps>(), {
   as: 'div',
@@ -12,68 +11,99 @@ const props = withDefaults(defineProps<MenuItemProps>(), {
   disabled: false,
 })
 
-const slots = defineSlots<{
-  action?(): any
-  default(): any
-}>()
+const rootMenu = inject<MenuProvider>('rootMenu')!
+if (!rootMenu) throw new Error('<MenuItem> can not inject root menu')
 
-const { activeIndex, activeParentIndex, levelOffsetCssVar } = useMenu()
+const isActive = computed(
+  () => !props.disabled && props.index === rootMenu.activeIndex.value
+)
 
 const menuItemStyle = computed<StyleValue>(() => {
   return {
-    paddingLeft: levelOffsetCssVar,
-    paddingRight: `calc(${slots.action ? 'var(--menu-padding) + 24px' : 'var(--menu-padding)'})`,
+    paddingLeft: rootMenu.levelOffsetCssVar,
+    width: rootMenu.isCollapsed.value ? `calc(var(--sidebar-width-icon))` : '',
   }
 })
 
-const instance = getCurrentInstance()
-
-function activateParentMenu() {
-  if (!instance) return
-
-  let parent = instance.parent
-  const parentIndexSet = []
-  while (parent) {
-    if (parent.type.name === 'MenuSub') {
-      const parentIndex = (parent.props as unknown as MenuSubProps).index
-      parentIndexSet.push(parentIndex)
+const instance = getCurrentInstance()!
+const indexPath = computed(() => {
+  let parent = instance.parent!
+  const path = [props.index]
+  while (parent.type.name !== 'MenuView') {
+    if (parent.props.index) {
+      path.unshift(parent.props.index as string)
     }
-    parent = parent.parent
+    parent = parent.parent!
   }
-  activeParentIndex.value = parentIndexSet
-}
+  return path
+})
 
-function handleItemClick() {
-  activeIndex.value = props.index
-  activateParentMenu()
+function handleClick(event: MouseEvent) {
+  if (props.disabled) {
+    event.stopImmediatePropagation()
+    event.preventDefault()
+    return
+  }
+  rootMenu.handleMenuItemClick(props.index, indexPath.value)
 }
 </script>
 
 <template>
   <li
-    class="group/item relative box-border h-10 w-full cursor-pointer list-none rounded-md transition-[all] hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
-    :class="{ 'is-active': index === activeIndex }"
+    class="ui-menu-item relative h-10 w-full cursor-pointer list-none rounded-md transition-[all]"
+    :class="{
+      'is-active': isActive,
+      'is-disabled': disabled,
+    }"
+    :data-active="isActive"
+    :data-disabled="disabled"
     role="menuitem"
-    @click="handleItemClick"
+    @click.capture="handleClick"
   >
     <Primitive
       :as="as"
       :as-child="asChild"
-      :class="
-        cn(
-          'h-full w-full flex items-center gap-2 whitespace-nowrap py-2 text-base group-[.is-active]/item:text-rose-500',
-          props.class
-        )
-      "
+      :class="cn('ui-menu-item__content text-base', props.class)"
       :style="menuItemStyle"
     >
       <slot></slot>
     </Primitive>
-    <span
-      v-if="slots.action"
-      class="top-center absolute right-[var(--menu-padding)] cursor-pointer"
-    >
-      <slot name="action"></slot>
-    </span>
   </li>
 </template>
+
+<style>
+.ui-menu-item__content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  white-space: nowrap;
+  color: var(--sidebar-foreground);
+}
+
+.ui-menu-item:hover {
+  @apply bg-sidebar-accent;
+
+  .ui-menu-item__content {
+    @apply text-rose;
+  }
+}
+
+.ui-menu-item.is-active[data-active='true'] {
+  @apply bg-rose-100;
+
+  .ui-menu-item__content {
+    @apply text-rose;
+  }
+}
+
+.ui-menu-item.is-disabled[data-disabled='true'] {
+  @apply bg-transparent cursor-not-allowed;
+
+  .ui-menu-item__content {
+    @apply text-sidebar-accent-foreground;
+  }
+}
+</style>

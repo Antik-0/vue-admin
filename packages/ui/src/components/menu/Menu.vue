@@ -1,5 +1,10 @@
 <script setup lang="ts">
-import type { MenuProps, MenuSubProvider, StyleValue } from './types'
+import type {
+  MenuProps,
+  MenuProvider,
+  MenuSubProvider,
+  StyleValue,
+} from './types'
 import { computed, getCurrentInstance, provide } from 'vue'
 import { cn } from '#/utils'
 import { useMenu } from './use-menu'
@@ -13,14 +18,16 @@ const props = withDefaults(defineProps<MenuProps>(), {
   defaultIndex: '',
 })
 
-const { isAccordion, isCollapse, menuCssVar } = useMenu(props)
-
-const menuElementState = computed(() => {
-  return {
-    'data-accordion': isAccordion.value,
-    'data-collapse': isCollapse.value,
-  }
-})
+const {
+  activeIndex,
+  activeMenus,
+  levelOffsetCssVar,
+  menuCssVar,
+  openedMenus,
+  // methods
+  handleMenuItemClick,
+  handleMenuSubClick,
+} = useMenu(props)
 
 const menuStyle = computed<StyleValue>(() => {
   return {
@@ -28,7 +35,20 @@ const menuStyle = computed<StyleValue>(() => {
   }
 })
 
+const isCollapsed = computed(() => props.collapse === true)
+
 const instance = getCurrentInstance()!
+
+provide<MenuProvider>('rootMenu', {
+  activeIndex,
+  activeMenus,
+  handleMenuItemClick,
+  handleMenuSubClick,
+  isCollapsed,
+  levelOffsetCssVar,
+  openedMenus,
+})
+
 provide<MenuSubProvider>(`menusub:${instance.uid}`, {
   menuLevel: 0,
 })
@@ -36,8 +56,9 @@ provide<MenuSubProvider>(`menusub:${instance.uid}`, {
 
 <template>
   <menu
-    :class="cn('flex flex-col gap-1', props.class)"
-    v-bind="menuElementState"
+    :class="cn('ui-menu flex flex-col gap-1', props.class)"
+    :data-accordion="props.accordion"
+    :data-collapse="props.collapse"
     role="menu"
     :style="menuStyle"
   >

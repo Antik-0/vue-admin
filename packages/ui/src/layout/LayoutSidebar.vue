@@ -15,8 +15,6 @@ const sidebarState = reactive<SidebarProps>({
   variant: 'sidebar',
 })
 
-console.log('>>>>', sidebarMenu.value)
-
 const isIconCollapsible = computed(() => sidebarState.collapsible === 'icon')
 </script>
 
@@ -32,7 +30,7 @@ const isIconCollapsible = computed(() => sidebarState.collapsible === 'icon')
       </div>
     </template>
 
-    <SidebarMenu :accordion="false" class="p-2">
+    <SidebarMenu class="p-2" accordion>
       <SidebarMenuItem
         v-for="menuItem in sidebarMenu"
         :key="menuItem.key"
