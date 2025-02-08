@@ -68,9 +68,9 @@ const logoStyle = computed(() => {
 
 <template>
   <header
+    class="bg-header top-0 w-full flex flex-[0_0_auto] items-center border-b-1 border-border border-solid transition-[margin] duration-200"
     :class="theme"
     :style="style"
-    class="bg-header top-0 w-full flex flex-[0_0_auto] items-center border-b-1 border-border border-solid transition-[margin] duration-200"
   >
     <div v-if="slots.logo" :style="logoStyle">
       <slot name="logo"></slot>

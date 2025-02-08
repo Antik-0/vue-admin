@@ -1,24 +1,27 @@
 <script setup lang="ts">
-import type { MenuItemGroupProps, MenuProvider, StyleValue } from './types'
-import { computed, inject } from 'vue'
+import { inject } from 'vue'
+import { type MenuProvider, MENU_PADDING_OFFSET } from './menu'
 
-defineProps<MenuItemGroupProps>()
+defineProps<{
+  /**
+   * 菜单分组标题
+   */
+  title?: string
+}>()
 
 const rootMenu = inject<MenuProvider>('rootMenu')!
-if (!rootMenu) throw new Error('<MenuItem> can not inject root menu')
+if (!rootMenu) throw new Error('<MenuItemGroup> can not inject root menu')
 
-const groupLabelStyle = computed<StyleValue>(() => {
-  return {
-    paddingLeft: rootMenu.levelOffsetCssVar,
-  }
-})
+const { isCollapsed } = rootMenu
 </script>
 
 <template>
-  <div class="py-2">
+  <div v-if="!isCollapsed" class="py-2" data-menu="menugroup" role="menuitem">
     <div
-      class="h-8 w-full flex items-center px-2 text-sm text-sidebar-accent-foreground font-medium"
-      :style="groupLabelStyle"
+      class="h-8 w-full flex items-center whitespace-nowrap px-[--menu-base-padding] text-sm text-muted-foreground/80 font-medium"
+      :style="{
+        paddingLeft: MENU_PADDING_OFFSET,
+      }"
     >
       <slot name="title">
         <span>{{ title }}</span>

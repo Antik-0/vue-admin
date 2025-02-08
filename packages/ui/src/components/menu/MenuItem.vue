@@ -1,8 +1,12 @@
 <script setup lang="ts">
-import type { MenuItemProps, MenuProvider, StyleValue } from './types'
 import { Primitive } from 'radix-vue'
 import { computed, getCurrentInstance, inject } from 'vue'
 import { cn } from '#/utils'
+import {
+  type MenuItemProps,
+  type MenuProvider,
+  MENU_PADDING_OFFSET,
+} from './menu'
 
 const props = withDefaults(defineProps<MenuItemProps>(), {
   as: 'div',
@@ -17,13 +21,6 @@ if (!rootMenu) throw new Error('<MenuItem> can not inject root menu')
 const isActive = computed(
   () => !props.disabled && props.index === rootMenu.activeIndex.value
 )
-
-const menuItemStyle = computed<StyleValue>(() => {
-  return {
-    paddingLeft: rootMenu.levelOffsetCssVar,
-    width: rootMenu.isCollapsed.value ? `calc(var(--sidebar-width-icon))` : '',
-  }
-})
 
 const instance = getCurrentInstance()!
 const indexPath = computed(() => {
@@ -50,21 +47,25 @@ function handleClick(event: MouseEvent) {
 
 <template>
   <li
-    class="ui-menu-item relative h-10 w-full cursor-pointer list-none rounded-md transition-[all]"
-    :class="{
-      'is-active': isActive,
-      'is-disabled': disabled,
-    }"
+    class="ui-menu-item relative h-10 w-full cursor-pointer list-none rounded-lg transition-all"
     :data-active="isActive"
     :data-disabled="disabled"
+    data-menu="menuitem"
     role="menuitem"
     @click.capture="handleClick"
   >
     <Primitive
       :as="as"
       :as-child="asChild"
-      :class="cn('ui-menu-item__content text-base', props.class)"
-      :style="menuItemStyle"
+      :class="
+        cn(
+          'ui-menu-item__content flex items-center gap-2 w-full h-full text-base p-[8px_var(--menu-base-padding)]',
+          props.class
+        )
+      "
+      :style="{
+        paddingLeft: MENU_PADDING_OFFSET,
+      }"
     >
       <slot></slot>
     </Primitive>
@@ -72,38 +73,31 @@ function handleClick(event: MouseEvent) {
 </template>
 
 <style>
-.ui-menu-item__content {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.5rem;
-  white-space: nowrap;
-  color: var(--sidebar-foreground);
+.ui-menu-item__content > svg:first-child {
+  @apply size-[--menu-icon-size] shrink-0;
 }
 
-.ui-menu-item:hover {
-  @apply bg-sidebar-accent;
+.ui-menu-item__content > span {
+  @apply flex-1 whitespace-nowrap overflow-hidden;
+}
+
+.ui-menu-item[data-active='true'] {
+  background-color: var(--menu-bg-color-active);
 
   .ui-menu-item__content {
-    @apply text-rose;
+    color: var(--menu-text-color-active);
   }
 }
 
-.ui-menu-item.is-active[data-active='true'] {
-  @apply bg-rose-100;
-
-  .ui-menu-item__content {
-    @apply text-rose;
-  }
+.ui-menu-item[data-disabled='true'] {
+  @apply opacity-25 bg-transparent cursor-not-allowed;
 }
 
-.ui-menu-item.is-disabled[data-disabled='true'] {
-  @apply bg-transparent cursor-not-allowed;
+.ui-menu-item:not([data-active='true'], [data-disabled='true']):hover {
+  background-color: var(--menu-bg-color-hover);
 
   .ui-menu-item__content {
-    @apply text-sidebar-accent-foreground;
+    color: var(--menu-text-color-hover);
   }
 }
 </style>

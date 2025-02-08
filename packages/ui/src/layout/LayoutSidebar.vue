@@ -1,51 +1,89 @@
 <script setup lang="ts">
-import type { SidebarProps } from '#/components/sidebar'
-import { computed, reactive } from 'vue'
 import { IconButton } from '#/components'
-import { Menu as SidebarMenu } from '#/components/menu'
-import { Sidebar, SidebarMenuItem } from '#/components/sidebar'
-import { IconChevronsLeft, IconChevronsRight, IconPin } from '#/icons'
+import {
+  IconChevronsLeft,
+  IconChevronsRight,
+  IconPin,
+  IconPinOff,
+} from '#/icons'
+import {
+  Sidebar,
+  SidebarContent,
+  SidebarFooter,
+  SidebarHeader,
+  SidebarMenu,
+  SidebarMenuItem,
+  SidebarTrigger,
+  useSidebar,
+} from '#/sidebar-ui'
+
+interface Props {
+  logoImage?: string
+  logoTitle?: string
+}
+
+withDefaults(defineProps<Props>(), {
+  logoTitle: 'Vue Admin',
+})
+
+const { collapse, floating, isMobile } = useSidebar()
+
 import { useSidebarMenu } from './hooks/use-menu'
 
 const { sidebarMenu } = useSidebarMenu()
-
-const sidebarState = reactive<SidebarProps>({
-  collapsible: 'icon',
-  side: 'left',
-  variant: 'sidebar',
-})
-
-const isIconCollapsible = computed(() => sidebarState.collapsible === 'icon')
 </script>
 
 <template>
-  <Sidebar v-bind="sidebarState">
-    <template #header>
-      <div class="flex items-center justify-between">
-        <IconButton
-          class="size-6"
-          :icon="isIconCollapsible ? IconChevronsRight : IconChevronsLeft"
-        />
-        <IconButton class="size-6" :icon="IconPin" />
+  <Sidebar>
+    <SidebarHeader>
+      <div class="flex items-center gap-2">
+        <span
+          v-if="logoImage"
+          class="flex-center flex shrink-0 overflow-hidden rounded transition-[width,height] duration-[--sidebar-duration] ease-[--sidebar-easefunc]"
+          :class="collapse ? 'size-10' : 'size-12'"
+        >
+          <img
+            :alt="logoTitle"
+            class="h-full w-full object-cover"
+            :src="logoImage"
+          />
+        </span>
+        <span
+          v-show="!collapse"
+          class="overflow-hidden whitespace-nowrap text-lg text-foreground font-semibold"
+        >
+          {{ logoTitle }}
+        </span>
       </div>
-    </template>
+    </SidebarHeader>
 
-    <SidebarMenu class="p-2" accordion>
-      <SidebarMenuItem
-        v-for="menuItem in sidebarMenu"
-        :key="menuItem.key"
-        :menu-item="menuItem"
-      />
-    </SidebarMenu>
-
-    <template #footer>
-      <div class="flex items-center justify-between">
-        <IconButton
-          class="size-6"
-          :icon="isIconCollapsible ? IconChevronsRight : IconChevronsLeft"
+    <SidebarContent class="p-2">
+      <SidebarMenu accordion>
+        <SidebarMenuItem
+          v-for="menuItem in sidebarMenu"
+          :key="menuItem.key"
+          :menu-item="menuItem"
         />
-        <IconButton class="size-6" :icon="IconPin" />
+      </SidebarMenu>
+    </SidebarContent>
+
+    <SidebarFooter v-if="!isMobile">
+      <div class="flex items-center justify-between px-1">
+        <SidebarTrigger type="collapse">
+          <IconButton
+            :icon="collapse ? IconChevronsRight : IconChevronsLeft"
+            variant="ghost"
+          />
+        </SidebarTrigger>
+
+        <SidebarTrigger type="floating">
+          <IconButton
+            v-show="!collapse"
+            :icon="floating ? IconPin : IconPinOff"
+            variant="ghost"
+          />
+        </SidebarTrigger>
       </div>
-    </template>
+    </SidebarFooter>
   </Sidebar>
 </template>

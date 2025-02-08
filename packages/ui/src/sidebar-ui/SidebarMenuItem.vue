@@ -2,7 +2,12 @@
 import type { MenuRecordRaw } from '@core/types'
 import { computed } from 'vue'
 import { Icon } from '#/icons'
-import { MenuItem, MenuItemGroup, MenuItemLink, MenuSub } from '../menu'
+import {
+  MenuItem,
+  MenuItemGroup,
+  MenuItemLink,
+  MenuSub,
+} from '../components/menu'
 
 interface Props {
   menuItem: MenuRecordRaw
@@ -32,10 +37,7 @@ const hasSubMenu = computed(() => {
       :menu-item="subMenuItem"
     />
   </MenuSub>
-  <MenuItemGroup v-else-if="menuItem.isGroup">
-    <template #title>
-      <span>{{ menuItem.name }}</span>
-    </template>
+  <MenuItemGroup v-else-if="menuItem.isGroup" :title="menuItem.name">
     <SidebarMenuItem
       v-for="subMenuItem in menuItem.children"
       :key="subMenuItem.key"
@@ -56,9 +58,6 @@ const hasSubMenu = computed(() => {
 
 <style>
 .ui-menu-item__icon {
-  width: 1rem;
-  height: 1rem;
-  flex-shrink: 0;
   transition: transform 0.4s ease-in-out;
 }
 

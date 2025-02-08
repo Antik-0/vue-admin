@@ -37,9 +37,7 @@ export const shadcnUIColors = {
   'sidebar-accent': 'hsl(var(--sidebar-accent))',
   'sidebar-accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
   'sidebar-background': 'hsl(var(--sidebar-background))',
-  'sidebar-border': 'hsl(var(--sidebar-border))',
   'sidebar-foreground': 'hsl(var(--sidebar-foreground))',
   'sidebar-primary': 'hsl(var(--sidebar-primary))',
   'sidebar-primary-foreground': 'hsl(var(--sidebar-primary-foreground))',
-  'sidebar-ring': 'hsl(var(--sidebar-ring))',
 }

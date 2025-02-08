@@ -18,12 +18,12 @@ const props = withDefaults(defineProps<Props>(), {
 
 <template>
   <UIButton
+    as="button"
     :class="props.class"
     :disabled="disabled"
-    :variant="variant"
-    as="button"
     size="icon"
     type="button"
+    :variant="variant"
   >
     <slot>
       <Icon :icon="props.icon" />

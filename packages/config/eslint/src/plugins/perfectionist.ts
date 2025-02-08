@@ -105,6 +105,7 @@ export function perfectionist(): Linter.Config[] {
               children: '^children$',
             },
             groups: ['keys', 'unknown', 'list', 'children', 'method'],
+            partitionByComment: true,
           },
         ],
         'perfectionist/sort-sets': [

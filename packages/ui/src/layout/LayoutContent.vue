@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { SidebarTrigger } from '#/components/sidebar'
+import { RouterView } from 'vue-router'
 </script>
 
 <template>
-  <main>
-    <SidebarTrigger />
+  <main class="flex-1 p-4">
+    <RouterView />
   </main>
 </template>
