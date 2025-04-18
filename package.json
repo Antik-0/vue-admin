@@ -3,6 +3,11 @@
   "version": "1.0.0",
   "private": true,
   "type": "module",
+  "packageManager": "pnpm@10.8.1",
+  "engines": {
+    "node": ">=20",
+    "pnpm": ">=10"
+  },
   "scripts": {
     "boot": "pnpm install && pnpm stub && pnpm dev:setup && pnpm git-hooks",
     "build": "turbo run build",
@@ -35,7 +40,7 @@
     "@config/prettier": "workspace:*",
     "@config/stylelint": "workspace:*",
     "@config/unocss": "workspace:*",
-    "@types/node": "^22.7.4",
+    "@types/node": "catalog:",
     "eslint": "catalog:",
     "lint-staged": "catalog:",
     "picocolors": "catalog:",
@@ -48,10 +53,5 @@
     "unocss": "catalog:",
     "vitest": "catalog:",
     "vue": "catalog:"
-  },
-  "packageManager": "pnpm@9.15.4",
-  "engines": {
-    "node": ">=20",
-    "pnpm": ">=9"
   }
 }
