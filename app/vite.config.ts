@@ -1,4 +1,5 @@
 import { resolve } from 'node:path'
+import { fileURLToPath, URL } from 'node:url'
 import { defineConfig } from 'vite'
 
 // plugins
@@ -9,22 +10,27 @@ import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import Components from 'unplugin-vue-components/vite'
 import vueDevTools from 'vite-plugin-vue-devtools'
 
+const typesPath = fileURLToPath(new URL('./types', import.meta.url))
+
 // https://vitejs.dev/config/
 export default defineConfig(() => {
-  const __dirname__ = import.meta.dirname
-  const pathDts = resolve(__dirname__, 'types')
-
   const plugins = [
-    vue(),
+    vue({
+      template: {
+        compilerOptions: {
+          isCustomElement: tag => ['iconify-icon'].includes(tag),
+        },
+      },
+    }),
 
     AutoImport({
-      dts: resolve(pathDts, 'auto-imports.d.ts'),
+      dts: resolve(typesPath, 'auto-imports.d.ts'),
       imports: ['vue', 'vue-router'],
       resolvers: [ElementPlusResolver()],
     }),
 
     Components({
-      dts: resolve(pathDts, 'components.d.ts'),
+      dts: resolve(typesPath, 'components.d.ts'),
       resolvers: [ElementPlusResolver()],
     }),
 

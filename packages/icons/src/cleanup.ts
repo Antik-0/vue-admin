@@ -1,5 +1,6 @@
-import fs from 'node:fs/promises'
+import { promises as fs } from 'node:fs'
 import { resolve } from 'node:path'
+import { fileURLToPath, URL } from 'node:url'
 import {
   blankIconSet,
   cleanupSVG,
@@ -12,15 +13,8 @@ import {
 import { getIconsCSS, quicklyValidateIconSet } from '@iconify/utils'
 import { loadConfig, optimize } from 'svgo'
 
-const DIST_ICON_JSON = 'icons.json'
-const DIST_INFO_JSON = 'info.json'
-const DIST_ICON_CSS = 'icons.css'
-const ICON_PREFIX = 'svg'
-
-const __dirname__ = import.meta.dirname
-
-function r(...path: string[]) {
-  return resolve(__dirname__, ...path)
+function createPath(path: string, base = import.meta.url) {
+  return fileURLToPath(new URL(path, base))
 }
 
 async function makeDir(path: string) {
@@ -32,29 +26,33 @@ async function makeDir(path: string) {
 }
 
 /** paths */
-const SVGOConfigPath = r('../svgo.config.js')
-const dirSvgs = r('./svgs')
-const dirDist = r('../dist')
+const rootPath = createPath('../')
+const distDirPath = resolve(rootPath, 'dist')
+const svgsDirPath = resolve(rootPath, './src/svgs')
+const SVGOConfigPath = resolve(rootPath, 'svgo.config.js')
 
-let isValidIconSet = false
+const outputPaths = {
+  css: resolve(distDirPath, 'icons.css'),
+  icons: resolve(distDirPath, 'icons.json'),
+  info: resolve(distDirPath, 'info.json'),
+}
+
+const ICONSET_PREFIX = 'svg'
 
 /** building flow */
 try {
   console.log('✨ IconSet building ... ✨\n')
 
-  await makeDir(dirDist)
+  await makeDir(distDirPath)
   await optimizeBySVGO()
   const iconSet = await buildIconSet()
-  await exportProcess(iconSet)
+  const isValidIconSet = await exportProcess(iconSet)
 
   console.log(`🎉 IconSet Pass The Validity Check: ${isValidIconSet}`)
 
-  const pathIconifyJSON = r(dirDist, DIST_ICON_JSON)
-  const pathIconifyInfoJSON = r(dirDist, DIST_INFO_JSON)
-  const pathIconifyCSS = r(dirDist, 'icons.css')
-  console.log(`🎉 Saved [icons.json] success: ${pathIconifyJSON}`)
-  console.log(`🎉 Saved [info.json] success: ${pathIconifyInfoJSON}`)
-  console.log(`🎉 Saved [icons.css] success: ${pathIconifyCSS}`)
+  console.log(`🎉 Saved [icons.json] success: ${outputPaths.icons}`)
+  console.log(`🎉 Saved [info.json] success: ${outputPaths.info}`)
+  console.log(`🎉 Saved [icons.css] success: ${outputPaths.css}`)
 } catch (error) {
   console.log('⚠️ IconiFy icons building fail: ', error)
 } finally {
@@ -65,9 +63,9 @@ async function optimizeBySVGO() {
   const config = await loadConfig(SVGOConfigPath)
   const result: Record<'data' | 'name', string>[] = []
 
-  const svgFileList = await fs.readdir(dirSvgs)
+  const svgFileList = await fs.readdir(svgsDirPath)
   for (const filename of svgFileList) {
-    const svgData = await fs.readFile(r(dirSvgs, filename), 'utf-8')
+    const svgData = await fs.readFile(resolve(svgsDirPath, filename), 'utf-8')
     result.push({
       name: filename,
       data: optimize(svgData, config).data,
@@ -75,15 +73,15 @@ async function optimizeBySVGO() {
   }
 
   for (const { name, data } of result) {
-    const filePath = r(dirSvgs, name)
+    const filePath = resolve(svgsDirPath, name)
     await fs.writeFile(filePath, data, 'utf-8')
   }
 }
 
 async function buildIconSet() {
-  const result = blankIconSet(ICON_PREFIX)
+  const result = blankIconSet(ICONSET_PREFIX)
 
-  const iconSet = await importDirectory(dirSvgs)
+  const iconSet = await importDirectory(svgsDirPath)
   iconSet.forEach(name => {
     const svg = iconSet.toSVG(name)
     if (!svg) return
@@ -106,37 +104,35 @@ async function exportProcess(iconSet: IconSet) {
   const prefix = iconSet.prefix
   const iconSetJSON = iconSet.export()
 
-  isValidIconSet = quicklyValidateIconSet(iconSetJSON) !== null
+  const isValid = quicklyValidateIconSet(iconSetJSON) !== null
 
-  // export to ./svgs/*.svg
+  // export to `./svgs/*.svg`
   await exportToDirectory(iconSet, {
     log: false,
-    target: dirSvgs,
+    target: svgsDirPath,
   })
 
-  // export to ../dist/icons.json
-  const IconifyJSONPath = r(dirDist, DIST_ICON_JSON)
+  // export to `../dist/icons.json`
   await fs.writeFile(
-    IconifyJSONPath,
+    outputPaths.icons,
     JSON.stringify(iconSetJSON, null, '\t'),
     'utf-8'
   )
 
-  // export to ../dist/info.json
+  // export to `../dist/info.json`
   const iconsInfo = {
     name: prefix,
     author: { name: prefix },
     license: { title: 'MIT' },
     total: iconSet.count(),
   }
-  const pathIconifyInfoJSON = r(dirDist, DIST_INFO_JSON)
   await fs.writeFile(
-    pathIconifyInfoJSON,
+    outputPaths.info,
     JSON.stringify(iconsInfo, null, '\t'),
     'utf-8'
   )
 
-  // export to ../dist/icons.css
+  // export to `../dist/icons.css`
   const iconSetNames = iconSet.list()
   const cssCode = getIconsCSS(iconSetJSON, iconSetNames, {
     commonSelector: '.svg',
@@ -149,6 +145,7 @@ async function exportProcess(iconSet: IconSet) {
     },
     varName: 'svg',
   })
-  const pathIconifyCSS = r(dirDist, DIST_ICON_CSS)
-  await fs.writeFile(pathIconifyCSS, cssCode, 'utf8')
+  await fs.writeFile(outputPaths.css, cssCode, 'utf8')
+
+  return isValid
 }

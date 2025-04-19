@@ -25,6 +25,6 @@
   "stylelint.configFile": "stylelint.config.mjs",
   "stylelint.configBasedir": "packages/config/stylelint/node_modules",
   "iconify.customCollectionJsonPaths": [
-    "C:\\Users\\Antik\\Desktop\\v-admin\\packages\\icons\\dist\\icons.json"
+    "C:\\Users\\Antik\\Desktop\\vue-admin\\packages\\icons\\dist\\icons.json"
   ]
 }
