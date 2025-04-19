@@ -2,7 +2,7 @@ import type { Theme } from 'unocss/preset-uno'
 import {
   definePreset,
   presetAttributify,
-  presetUno,
+  presetWind3,
   transformerVariantGroup,
 } from 'unocss'
 import { rules } from './rules/index.js'
@@ -25,7 +25,7 @@ export const presetBase = definePreset<presetBaseOption, presetBaseTheme>(
     return {
       name: '@unocss/preset-base',
       presets: [
-        presetUno({
+        presetWind3({
           dark: {
             dark: darkClass,
             light: lightClass,
@@ -50,9 +50,6 @@ export const presetBase = definePreset<presetBaseOption, presetBaseTheme>(
           borderRadius: {
             ...theme.borderRadius,
             ...customTheme.borderRadius,
-          },
-          breakpoints: {
-            ...customTheme.breakpoints,
           },
           colors: {
             ...theme.colors,

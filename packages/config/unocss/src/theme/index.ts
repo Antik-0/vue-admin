@@ -1,14 +1,5 @@
 import { shadcnUIColors } from './colors.js'
 
-/* eslint-disable perfectionist/sort-objects */
-export const breakpoints = {
-  sm: '640px',
-  md: '768px',
-  lg: '1024px',
-  xl: '1280px',
-  '2xl': '1600px',
-} as const
-
 export const borderRadius = {
   lg: 'var(--radius)',
   md: 'calc(var(--radius) - 2px)',
@@ -17,6 +8,12 @@ export const borderRadius = {
 } as const
 
 export const animation = {
+  durations: {
+    'accordion-down': '0.2s',
+    'accordion-up': '0.2s',
+    'collapsible-down': '0.2s',
+    'collapsible-up': '0.2s',
+  },
   keyframes: {
     'accordion-down': `{
       from { height: 0 }
@@ -35,12 +32,6 @@ export const animation = {
       to { height: 0 }
     }`,
   },
-  durations: {
-    'accordion-down': '0.2s',
-    'accordion-up': '0.2s',
-    'collapsible-down': '0.2s',
-    'collapsible-up': '0.2s',
-  },
   timingFns: {
     'accordion-down': 'ease-in-out',
     'accordion-up': 'ease-in-out',
@@ -50,8 +41,7 @@ export const animation = {
 } as const
 
 export const customTheme = {
-  breakpoints,
-  borderRadius,
   animation,
+  borderRadius,
   colors: { ...shadcnUIColors },
 }
