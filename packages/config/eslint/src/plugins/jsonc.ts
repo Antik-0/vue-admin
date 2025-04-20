@@ -78,7 +78,7 @@ function sortPackageJSON(): Linter.Config {
           pathPattern: '^$',
         },
         {
-          order: ['types', 'default', 'import', 'require'],
+          order: ['types', 'import', 'require', 'default'],
           pathPattern: '^exports.*$',
         },
         {

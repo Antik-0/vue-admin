@@ -1,3 +1,4 @@
+import type { Linter } from 'eslint'
 import tsEslint from 'typescript-eslint'
 import {
   ignores,
@@ -13,7 +14,7 @@ import {
 /**
  * reference: https://eslint.org/docs/latest/use/configure/configuration-files
  */
-export async function defineConfig() {
+export function defineConfig() {
   const configs = [
     ignores(),
     turbo(),
@@ -24,5 +25,5 @@ export async function defineConfig() {
     unocss(),
     perfectionist(),
   ].flat()
-  return tsEslint.config(...configs)
+  return tsEslint.config(...configs) as Linter.Config[]
 }

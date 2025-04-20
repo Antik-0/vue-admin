@@ -3,7 +3,7 @@ import type { Config } from 'prettier'
 /**
  * reference: https://prettier.io/docs/en/options
  */
-export function defineConfig(): Config {
+export function defineConfig() {
   return {
     arrowParens: 'avoid',
     endOfLine: 'auto',
@@ -11,5 +11,5 @@ export function defineConfig(): Config {
     semi: false,
     singleQuote: true,
     trailingComma: 'es5',
-  }
+  } as Config
 }
